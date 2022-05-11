@@ -1,0 +1,860 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteManage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationManage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Frame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayableCharacter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadedResources.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationFrame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="debug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalDefine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyEventHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteManage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationManage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Frame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayableCharacter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadedResources.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationFrame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="debug.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyEventHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionEvent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\Asuna\Asu000_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu000_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu000_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu000_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu000_04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu000_05.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu000_06.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu000_07.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu001_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu001_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu001_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu001_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu002_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu002_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu002_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu002_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu002_04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu002_05.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu003_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu003_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu003_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu003_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu003_04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu003_05.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu003_06.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu100_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu100_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu100_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu100_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu101_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu101_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu101_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu101_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu101_04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu102_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu102_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu102_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu102_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu103_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu103_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu103_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu103_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu103_04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu103_05.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu103_06.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu103_07.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu103_08.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu200_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu200_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu200_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu200_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu200_04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu200_05.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu200_06.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu200_07.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu200_08.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu200_09.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu200_10.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu200_11.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu201_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu201_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu201_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu201_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu202_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu202_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu202_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu202_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu202_04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu203_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu203_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu203_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu203_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu203_04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu203_05.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu203_06.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu204_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu204_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu204_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu204_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu204_04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu204_05.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu300_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu300_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu300_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu300_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu300_04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu300_05.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu300_06.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu310_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu310_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu310_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu310_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu310_04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu320_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu320_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu320_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu320_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu320_04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu320_05.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu340_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu340_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu340_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu391_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu391_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu391_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu391_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu391_04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu395_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu395_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu395_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu395_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu395_04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu395_05.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu395_06.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu395_07.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu395_08.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu395_09.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu395_10.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu395_11.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu395_12.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu400_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu400_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu400_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu400_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu400_04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu400_05.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu401_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu401_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu401_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu401_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu401_04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu401_05.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu402_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu402_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu402_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu402_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu402_04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu402_05.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu402_06.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu402_07.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu403_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu403_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu403_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu403_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu408_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu408_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu409_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu409_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu500_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu500_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu500_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu501_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu501_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu501_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu502_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu502_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu502_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu506_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu506_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu506_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu506_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu507_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu507_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu507_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu507_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu508_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu508_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu508_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu508_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu600_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu600_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu600_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu600_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu600_04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu600_05.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu600_06.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu600_07.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu606_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu606_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu606_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu606_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu620_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu705_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu705_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu705_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu705_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu806_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu806_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu806_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu806_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu806_04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu806_05.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu806_06.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu806_07.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu900_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu900_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu900_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu900_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu900_04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu900_05.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu900_06.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu900_07.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu900_08.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu901_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu905_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu940_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu940_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu940_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu940_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu940_04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu950_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu950_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu950_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu950_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu950_04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu950_05.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu950_06.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu950_07.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu950_08.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu950_09.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu960_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu960_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu960_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu960_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu960_04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu980_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu980_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu980_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu980_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu980_04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu980_05.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu990_00.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu990_01.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu990_02.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu990_03.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu990_04.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\Asuna\Asu990_05.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{f47813e4-b572-4585-806c-0eddf23825e0}</ProjectGuid>
+    <RootNamespace>GameDevProject</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>d3d10.lib;dxguid.lib;dinput8.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Animation.h" />
+    <ClInclude Include="AnimationFrame.h" />
+    <ClInclude Include="AnimationManage.h" />
+    <ClInclude Include="Collision.h" />
+    <ClInclude Include="CollisionEvent.h" />
+    <ClInclude Include="debug.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Frame.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GlobalDefine.h" />
+    <ClInclude Include="KeyEventHandler.h" />
+    <ClInclude Include="LoadedResources.h" />
+    <ClInclude Include="Platform.h" />
+    <ClInclude Include="PlayableCharacter.h" />
+    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="SpriteManage.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="TextureManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="AnimationFrame.cpp" />
+    <ClCompile Include="AnimationManage.cpp" />
+    <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="CollisionEvent.cpp" />
+    <ClCompile Include="debug.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Frame.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="KeyEventHandler.cpp" />
+    <ClCompile Include="LoadedResources.cpp" />
+    <ClCompile Include="main.cpp">
+      <DeploymentContent>true</DeploymentContent>
+    </ClCompile>
+    <ClCompile Include="Platform.cpp" />
+    <ClCompile Include="PlayableCharacter.cpp" />
+    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="SpriteManage.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\Asuna\Asu000_00.png" />
+    <Image Include="assets\Asuna\Asu000_01.png" />
+    <Image Include="assets\Asuna\Asu000_02.png" />
+    <Image Include="assets\Asuna\Asu000_03.png" />
+    <Image Include="assets\Asuna\Asu000_04.png" />
+    <Image Include="assets\Asuna\Asu000_05.png" />
+    <Image Include="assets\Asuna\Asu000_06.png" />
+    <Image Include="assets\Asuna\Asu000_07.png" />
+    <Image Include="assets\Asuna\Asu001_00.png" />
+    <Image Include="assets\Asuna\Asu001_01.png" />
+    <Image Include="assets\Asuna\Asu001_02.png" />
+    <Image Include="assets\Asuna\Asu001_03.png" />
+    <Image Include="assets\Asuna\Asu002_00.png" />
+    <Image Include="assets\Asuna\Asu002_01.png" />
+    <Image Include="assets\Asuna\Asu002_02.png" />
+    <Image Include="assets\Asuna\Asu002_03.png" />
+    <Image Include="assets\Asuna\Asu002_04.png" />
+    <Image Include="assets\Asuna\Asu002_05.png" />
+    <Image Include="assets\Asuna\Asu003_00.png" />
+    <Image Include="assets\Asuna\Asu003_01.png" />
+    <Image Include="assets\Asuna\Asu003_02.png" />
+    <Image Include="assets\Asuna\Asu003_03.png" />
+    <Image Include="assets\Asuna\Asu003_04.png" />
+    <Image Include="assets\Asuna\Asu003_05.png" />
+    <Image Include="assets\Asuna\Asu003_06.png" />
+    <Image Include="assets\Asuna\Asu100_00.png" />
+    <Image Include="assets\Asuna\Asu100_01.png" />
+    <Image Include="assets\Asuna\Asu100_02.png" />
+    <Image Include="assets\Asuna\Asu100_03.png" />
+    <Image Include="assets\Asuna\Asu101_00.png" />
+    <Image Include="assets\Asuna\Asu101_01.png" />
+    <Image Include="assets\Asuna\Asu101_02.png" />
+    <Image Include="assets\Asuna\Asu101_03.png" />
+    <Image Include="assets\Asuna\Asu101_04.png" />
+    <Image Include="assets\Asuna\Asu102_00.png" />
+    <Image Include="assets\Asuna\Asu102_01.png" />
+    <Image Include="assets\Asuna\Asu102_02.png" />
+    <Image Include="assets\Asuna\Asu102_03.png" />
+    <Image Include="assets\Asuna\Asu103_00.png" />
+    <Image Include="assets\Asuna\Asu103_01.png" />
+    <Image Include="assets\Asuna\Asu103_02.png" />
+    <Image Include="assets\Asuna\Asu103_03.png" />
+    <Image Include="assets\Asuna\Asu103_04.png" />
+    <Image Include="assets\Asuna\Asu103_05.png" />
+    <Image Include="assets\Asuna\Asu103_06.png" />
+    <Image Include="assets\Asuna\Asu103_07.png" />
+    <Image Include="assets\Asuna\Asu103_08.png" />
+    <Image Include="assets\Asuna\Asu200_00.png" />
+    <Image Include="assets\Asuna\Asu200_01.png" />
+    <Image Include="assets\Asuna\Asu200_02.png" />
+    <Image Include="assets\Asuna\Asu200_03.png" />
+    <Image Include="assets\Asuna\Asu200_04.png" />
+    <Image Include="assets\Asuna\Asu200_05.png" />
+    <Image Include="assets\Asuna\Asu200_06.png" />
+    <Image Include="assets\Asuna\Asu200_07.png" />
+    <Image Include="assets\Asuna\Asu200_08.png" />
+    <Image Include="assets\Asuna\Asu200_09.png" />
+    <Image Include="assets\Asuna\Asu200_10.png" />
+    <Image Include="assets\Asuna\Asu200_11.png" />
+    <Image Include="assets\Asuna\Asu201_00.png" />
+    <Image Include="assets\Asuna\Asu201_01.png" />
+    <Image Include="assets\Asuna\Asu201_02.png" />
+    <Image Include="assets\Asuna\Asu201_03.png" />
+    <Image Include="assets\Asuna\Asu202_00.png" />
+    <Image Include="assets\Asuna\Asu202_01.png" />
+    <Image Include="assets\Asuna\Asu202_02.png" />
+    <Image Include="assets\Asuna\Asu202_03.png" />
+    <Image Include="assets\Asuna\Asu202_04.png" />
+    <Image Include="assets\Asuna\Asu203_00.png" />
+    <Image Include="assets\Asuna\Asu203_01.png" />
+    <Image Include="assets\Asuna\Asu203_02.png" />
+    <Image Include="assets\Asuna\Asu203_03.png" />
+    <Image Include="assets\Asuna\Asu203_04.png" />
+    <Image Include="assets\Asuna\Asu203_05.png" />
+    <Image Include="assets\Asuna\Asu203_06.png" />
+    <Image Include="assets\Asuna\Asu204_00.png" />
+    <Image Include="assets\Asuna\Asu204_01.png" />
+    <Image Include="assets\Asuna\Asu204_02.png" />
+    <Image Include="assets\Asuna\Asu204_03.png" />
+    <Image Include="assets\Asuna\Asu204_04.png" />
+    <Image Include="assets\Asuna\Asu204_05.png" />
+    <Image Include="assets\Asuna\Asu300_00.png" />
+    <Image Include="assets\Asuna\Asu300_01.png" />
+    <Image Include="assets\Asuna\Asu300_02.png" />
+    <Image Include="assets\Asuna\Asu300_03.png" />
+    <Image Include="assets\Asuna\Asu300_04.png" />
+    <Image Include="assets\Asuna\Asu300_05.png" />
+    <Image Include="assets\Asuna\Asu300_06.png" />
+    <Image Include="assets\Asuna\Asu310_00.png" />
+    <Image Include="assets\Asuna\Asu310_01.png" />
+    <Image Include="assets\Asuna\Asu310_02.png" />
+    <Image Include="assets\Asuna\Asu310_03.png" />
+    <Image Include="assets\Asuna\Asu310_04.png" />
+    <Image Include="assets\Asuna\Asu320_00.png" />
+    <Image Include="assets\Asuna\Asu320_01.png" />
+    <Image Include="assets\Asuna\Asu320_02.png" />
+    <Image Include="assets\Asuna\Asu320_03.png" />
+    <Image Include="assets\Asuna\Asu320_04.png" />
+    <Image Include="assets\Asuna\Asu320_05.png" />
+    <Image Include="assets\Asuna\Asu340_00.png" />
+    <Image Include="assets\Asuna\Asu340_01.png" />
+    <Image Include="assets\Asuna\Asu340_02.png" />
+    <Image Include="assets\Asuna\Asu391_00.png" />
+    <Image Include="assets\Asuna\Asu391_01.png" />
+    <Image Include="assets\Asuna\Asu391_02.png" />
+    <Image Include="assets\Asuna\Asu391_03.png" />
+    <Image Include="assets\Asuna\Asu391_04.png" />
+    <Image Include="assets\Asuna\Asu395_00.png" />
+    <Image Include="assets\Asuna\Asu395_01.png" />
+    <Image Include="assets\Asuna\Asu395_02.png" />
+    <Image Include="assets\Asuna\Asu395_03.png" />
+    <Image Include="assets\Asuna\Asu395_04.png" />
+    <Image Include="assets\Asuna\Asu395_05.png" />
+    <Image Include="assets\Asuna\Asu395_06.png" />
+    <Image Include="assets\Asuna\Asu395_07.png" />
+    <Image Include="assets\Asuna\Asu395_08.png" />
+    <Image Include="assets\Asuna\Asu395_09.png" />
+    <Image Include="assets\Asuna\Asu395_10.png" />
+    <Image Include="assets\Asuna\Asu395_11.png" />
+    <Image Include="assets\Asuna\Asu395_12.png" />
+    <Image Include="assets\Asuna\Asu400_00.png" />
+    <Image Include="assets\Asuna\Asu400_01.png" />
+    <Image Include="assets\Asuna\Asu400_02.png" />
+    <Image Include="assets\Asuna\Asu400_03.png" />
+    <Image Include="assets\Asuna\Asu400_04.png" />
+    <Image Include="assets\Asuna\Asu400_05.png" />
+    <Image Include="assets\Asuna\Asu401_00.png" />
+    <Image Include="assets\Asuna\Asu401_01.png" />
+    <Image Include="assets\Asuna\Asu401_02.png" />
+    <Image Include="assets\Asuna\Asu401_03.png" />
+    <Image Include="assets\Asuna\Asu401_04.png" />
+    <Image Include="assets\Asuna\Asu401_05.png" />
+    <Image Include="assets\Asuna\Asu402_00.png" />
+    <Image Include="assets\Asuna\Asu402_01.png" />
+    <Image Include="assets\Asuna\Asu402_02.png" />
+    <Image Include="assets\Asuna\Asu402_03.png" />
+    <Image Include="assets\Asuna\Asu402_04.png" />
+    <Image Include="assets\Asuna\Asu402_05.png" />
+    <Image Include="assets\Asuna\Asu402_06.png" />
+    <Image Include="assets\Asuna\Asu402_07.png" />
+    <Image Include="assets\Asuna\Asu403_00.png" />
+    <Image Include="assets\Asuna\Asu403_01.png" />
+    <Image Include="assets\Asuna\Asu403_02.png" />
+    <Image Include="assets\Asuna\Asu403_03.png" />
+    <Image Include="assets\Asuna\Asu408_00.png" />
+    <Image Include="assets\Asuna\Asu408_01.png" />
+    <Image Include="assets\Asuna\Asu409_00.png" />
+    <Image Include="assets\Asuna\Asu409_01.png" />
+    <Image Include="assets\Asuna\Asu500_00.png" />
+    <Image Include="assets\Asuna\Asu500_01.png" />
+    <Image Include="assets\Asuna\Asu500_02.png" />
+    <Image Include="assets\Asuna\Asu501_00.png" />
+    <Image Include="assets\Asuna\Asu501_01.png" />
+    <Image Include="assets\Asuna\Asu501_02.png" />
+    <Image Include="assets\Asuna\Asu502_00.png" />
+    <Image Include="assets\Asuna\Asu502_01.png" />
+    <Image Include="assets\Asuna\Asu502_02.png" />
+    <Image Include="assets\Asuna\Asu506_00.png" />
+    <Image Include="assets\Asuna\Asu506_01.png" />
+    <Image Include="assets\Asuna\Asu506_02.png" />
+    <Image Include="assets\Asuna\Asu506_03.png" />
+    <Image Include="assets\Asuna\Asu507_00.png" />
+    <Image Include="assets\Asuna\Asu507_01.png" />
+    <Image Include="assets\Asuna\Asu507_02.png" />
+    <Image Include="assets\Asuna\Asu507_03.png" />
+    <Image Include="assets\Asuna\Asu508_00.png" />
+    <Image Include="assets\Asuna\Asu508_01.png" />
+    <Image Include="assets\Asuna\Asu508_02.png" />
+    <Image Include="assets\Asuna\Asu508_03.png" />
+    <Image Include="assets\Asuna\Asu600_00.png" />
+    <Image Include="assets\Asuna\Asu600_01.png" />
+    <Image Include="assets\Asuna\Asu600_02.png" />
+    <Image Include="assets\Asuna\Asu600_03.png" />
+    <Image Include="assets\Asuna\Asu600_04.png" />
+    <Image Include="assets\Asuna\Asu600_05.png" />
+    <Image Include="assets\Asuna\Asu600_06.png" />
+    <Image Include="assets\Asuna\Asu600_07.png" />
+    <Image Include="assets\Asuna\Asu606_00.png" />
+    <Image Include="assets\Asuna\Asu606_01.png" />
+    <Image Include="assets\Asuna\Asu606_02.png" />
+    <Image Include="assets\Asuna\Asu606_03.png" />
+    <Image Include="assets\Asuna\Asu620_00.png" />
+    <Image Include="assets\Asuna\Asu705_00.png" />
+    <Image Include="assets\Asuna\Asu705_01.png" />
+    <Image Include="assets\Asuna\Asu705_02.png" />
+    <Image Include="assets\Asuna\Asu705_03.png" />
+    <Image Include="assets\Asuna\Asu806_00.png" />
+    <Image Include="assets\Asuna\Asu806_01.png" />
+    <Image Include="assets\Asuna\Asu806_02.png" />
+    <Image Include="assets\Asuna\Asu806_03.png" />
+    <Image Include="assets\Asuna\Asu806_04.png" />
+    <Image Include="assets\Asuna\Asu806_05.png" />
+    <Image Include="assets\Asuna\Asu806_06.png" />
+    <Image Include="assets\Asuna\Asu806_07.png" />
+    <Image Include="assets\Asuna\Asu900_00.png" />
+    <Image Include="assets\Asuna\Asu900_01.png" />
+    <Image Include="assets\Asuna\Asu900_02.png" />
+    <Image Include="assets\Asuna\Asu900_03.png" />
+    <Image Include="assets\Asuna\Asu900_04.png" />
+    <Image Include="assets\Asuna\Asu900_05.png" />
+    <Image Include="assets\Asuna\Asu900_06.png" />
+    <Image Include="assets\Asuna\Asu900_07.png" />
+    <Image Include="assets\Asuna\Asu900_08.png" />
+    <Image Include="assets\Asuna\Asu901_00.png" />
+    <Image Include="assets\Asuna\Asu905_00.png" />
+    <Image Include="assets\Asuna\Asu940_00.png" />
+    <Image Include="assets\Asuna\Asu940_01.png" />
+    <Image Include="assets\Asuna\Asu940_02.png" />
+    <Image Include="assets\Asuna\Asu940_03.png" />
+    <Image Include="assets\Asuna\Asu940_04.png" />
+    <Image Include="assets\Asuna\Asu950_00.png" />
+    <Image Include="assets\Asuna\Asu950_01.png" />
+    <Image Include="assets\Asuna\Asu950_02.png" />
+    <Image Include="assets\Asuna\Asu950_03.png" />
+    <Image Include="assets\Asuna\Asu950_04.png" />
+    <Image Include="assets\Asuna\Asu950_05.png" />
+    <Image Include="assets\Asuna\Asu950_06.png" />
+    <Image Include="assets\Asuna\Asu950_07.png" />
+    <Image Include="assets\Asuna\Asu950_08.png" />
+    <Image Include="assets\Asuna\Asu950_09.png" />
+    <Image Include="assets\Asuna\Asu960_00.png" />
+    <Image Include="assets\Asuna\Asu960_01.png" />
+    <Image Include="assets\Asuna\Asu960_02.png" />
+    <Image Include="assets\Asuna\Asu960_03.png" />
+    <Image Include="assets\Asuna\Asu960_04.png" />
+    <Image Include="assets\Asuna\Asu980_00.png" />
+    <Image Include="assets\Asuna\Asu980_01.png" />
+    <Image Include="assets\Asuna\Asu980_02.png" />
+    <Image Include="assets\Asuna\Asu980_03.png" />
+    <Image Include="assets\Asuna\Asu980_04.png" />
+    <Image Include="assets\Asuna\Asu980_05.png" />
+    <Image Include="assets\Asuna\Asu990_00.png" />
+    <Image Include="assets\Asuna\Asu990_01.png" />
+    <Image Include="assets\Asuna\Asu990_02.png" />
+    <Image Include="assets\Asuna\Asu990_03.png" />
+    <Image Include="assets\Asuna\Asu990_04.png" />
+    <Image Include="assets\Asuna\Asu990_05.png" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="packages\Microsoft.DXSDK.D3DX.9.29.952.8\build\native\Microsoft.DXSDK.D3DX.targets" Condition="Exists('packages\Microsoft.DXSDK.D3DX.9.29.952.8\build\native\Microsoft.DXSDK.D3DX.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.DXSDK.D3DX.9.29.952.8\build\native\Microsoft.DXSDK.D3DX.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.DXSDK.D3DX.9.29.952.8\build\native\Microsoft.DXSDK.D3DX.targets'))" />
+  </Target>
+</Project>
