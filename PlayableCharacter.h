@@ -9,14 +9,22 @@ private:
 	float ax;
 	float ay;
 	bool isOnPlatform;
+	bool canNormalJump;
 	float maxVx;
+	int powerUpLevel;
 	//float maxVy;
 	/*std::vector<int> animationIDList;*/
 	//AnimationManage animationManage;
 	void _setState(int state);
 public:
+	
 	PlayableCharacter(float x, float y);
+	int getAnimationSmall();
+	int getAnimationBig();
+	int getAnimationFire();
+	int getAnimationTanuki();
 	void Update(DWORD dt);
+	void setPowerUplevel(int lvl) { this->powerUpLevel = lvl; y += 10.0f; }
 	int GetAnimationID(int i);
 	int getCorrectAnimation();
 	void AddAnimation(int id);

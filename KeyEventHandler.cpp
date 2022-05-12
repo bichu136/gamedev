@@ -53,6 +53,18 @@ void KeyEventHandler::OnKeyDown(int KeyCode, PlayableCharacter* player)
 	case DIK_S:
 		player->jump();
 		break;
+	case DIK_7:
+		player->setPowerUplevel(SMALL);
+		break;
+	case DIK_8:
+		player->setPowerUplevel(BIG);
+		break;
+	case DIK_9:
+		player->setPowerUplevel(FIRE);
+		break;
+	case DIK_0:
+		player->setPowerUplevel(TANUKI);
+		break;
 	/*case DIK_LEFTARROW:
 		player->walk(LEFT);
 		break;

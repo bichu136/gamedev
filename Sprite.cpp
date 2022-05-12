@@ -22,7 +22,7 @@ Sprite::Sprite(int id, int left, int top, int right, int bottom, Texture* textur
 	sprite.TexSize.y = spriteHeight / (float)texture->getHeight();
 	sprite.ColorModulate = D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f);
 	sprite.TextureIndex = 0;
-	D3DXMatrixScaling(&matrixScaling, (float)spriteWidth*2.0f, (float)spriteHeight*2.0f, 1.0f);
+	D3DXMatrixScaling(&matrixScaling, (float)spriteWidth*SCALE_WIDTH, (float)spriteHeight*SCALE_HEIGHT, 1.0f);
 
 }
 

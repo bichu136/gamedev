@@ -1,34 +1,179 @@
 #include "PlayableCharacter.h"
 #include "GlobalDefine.h"
 #include "debug.h"
-#define MARIO_MAX_VELOCITY_WALK 2.0f
-#define MARIO_MAX_VELOCITY_RUN 4.0f
-#define MARIO_ACCELARATION_WALK 1.0f
-#define MARIO_ACCELARATION_RUN 1.5f
+#define MARIO_MAX_VELOCITY_WALK 3.0f
+#define MARIO_MAX_VELOCITY_RUN 7.0f
+#define MARIO_ACCELARATION_WALK 0.2f
+#define MARIO_ACCELARATION_RUN 0.225f
+#define GRAVITY -0.1f
 PlayableCharacter::PlayableCharacter(float x, float y):GameObject(x,y)
 {
 	vx = 0.0f;
 	vy = 0.0f;
 	ax = 0.0f;
-	ay = -0.1f;
-	state = MARIO_STATE_IDLE_LEFT;
+	ay = GRAVITY;
+	canNormalJump = false;
+	state = SMALL_MARIO_STATE_IDLE_LEFT;
+	powerUpLevel = 0;
+}
+
+int PlayableCharacter::getAnimationSmall()
+{
+	if (vy <= 0.0f && vy >= -1.0f) {
+		
+	}
+	else {
+		if (vx > 0) {
+			state = SMALL_MARIO_STATE_AIR_RIGHT;
+			return SMALL_MARIO_STATE_AIR_RIGHT;
+
+		}
+		else if (vx < 0 ){
+			state = SMALL_MARIO_STATE_AIR_LEFT;
+			return SMALL_MARIO_STATE_AIR_LEFT;
+		}
+		if (state % 2 == 0) {
+			state = SMALL_MARIO_STATE_AIR_LEFT;
+			return state;
+		}
+		else {
+			state = SMALL_MARIO_STATE_AIR_RIGHT;
+			return state;
+		}
+		
+	}
+
+
+	if (vx * ax < 0) {
+		if (vx > 0) {
+			state = SMALL_MARIO_STATE_BRAKE_RIGHT;
+			return SMALL_MARIO_STATE_BRAKE_RIGHT;
+
+		}
+		else if(vx<0) {
+			state = SMALL_MARIO_STATE_BRAKE_LEFT;
+			return SMALL_MARIO_STATE_BRAKE_LEFT;
+		}
+		return state;
+	}
+	if (abs(vx) > MARIO_MAX_VELOCITY_WALK) {
+		if (vx > 0) {
+			state = SMALL_MARIO_STATE_RUN_RIGHT;
+			return SMALL_MARIO_STATE_RUN_RIGHT;
+		}
+		else  if(vx < 0) {
+			state = SMALL_MARIO_STATE_RUN_LEFT;
+			return SMALL_MARIO_STATE_RUN_LEFT;
+		}
+		return state;
+	}
+	else {
+		if (vx > 0) {
+			state = SMALL_MARIO_STATE_WALK_RIGHT;
+			return SMALL_MARIO_STATE_WALK_RIGHT;
+		}
+		if (vx < 0) {
+			state = SMALL_MARIO_STATE_WALK_LEFT;
+			return SMALL_MARIO_STATE_WALK_LEFT;
+		}
+		if (vx == 0.0f) {
+			if (state == SMALL_MARIO_STATE_IDLE_LEFT)
+				return SMALL_MARIO_STATE_IDLE_LEFT;
+			if (state == SMALL_MARIO_STATE_IDLE_RIGHT)
+				return SMALL_MARIO_STATE_IDLE_RIGHT;
+		}
+	}
+	return state;
+}
+
+int PlayableCharacter::getAnimationBig()
+{
+	if (vy <= 0.0f && vy >= -1.0f) {
+
+	}
+	else {
+		if (vx > 0) {
+			state = SMALL_MARIO_STATE_AIR_RIGHT;
+			return SMALL_MARIO_STATE_AIR_RIGHT;
+
+		}
+		else if (vx < 0) {
+			state = SMALL_MARIO_STATE_AIR_LEFT;
+			return SMALL_MARIO_STATE_AIR_LEFT;
+		}
+		if (state % 2 == 0) {
+			state = SMALL_MARIO_STATE_AIR_LEFT;
+			return state;
+		}
+		else {
+			state = SMALL_MARIO_STATE_AIR_RIGHT;
+			return state;
+		}
+
+	}
+
+
+	if (vx * ax < 0) {
+		if (vx > 0) {
+			return BIG_MARIO_STATE_BRAKE_RIGHT;
+
+		}
+		else {
+			return BIG_MARIO_STATE_BRAKE_LEFT;
+		}
+	}
+	if (abs(vx) > MARIO_MAX_VELOCITY_WALK) {
+		if (vx > 0) {
+			return BIG_MARIO_STATE_RUN_RIGHT;
+		}
+		else {
+			return BIG_MARIO_STATE_RUN_LEFT;
+		}
+	}
+	else {
+		if (vx > 0) {
+			return BIG_MARIO_STATE_WALK_RIGHT;
+		}
+		if (vx < 0) {
+			return BIG_MARIO_STATE_WALK_LEFT;
+		}
+		if (vx == 0.0f) {
+			if (state == SMALL_MARIO_STATE_IDLE_LEFT)
+				return BIG_MARIO_STATE_IDLE_LEFT;
+			if (state == SMALL_MARIO_STATE_IDLE_RIGHT)
+				return BIG_MARIO_STATE_IDLE_RIGHT;
+		}
+	}
+	return BIG_MARIO_STATE_AIR_LEFT;
+}
+
+int PlayableCharacter::getAnimationFire()
+{
+	return getAnimationBig();
+}
+
+int PlayableCharacter::getAnimationTanuki()
+{
+	return getAnimationBig();
 }
 
 void PlayableCharacter::Update(DWORD dt)
 {
+	ay = GRAVITY;
 	float pre_vx = vx;
 	vy += ay;
 	vx += ax;
-	//if (state == MARIO_STATE_IDLE_LEFT) {
+	//if (state == SMALL_MARIO_STATE_IDLE_LEFT) {
 	//	if (vx * pre_vx <= 0.0f) vx = 0.0f;
 	//}
-	//if (state == MARIO_STATE_IDLE_RIGHT) {
+	//if (state == SMALL_MARIO_STATE_IDLE_RIGHT) {
 	//	if (vx * pre_vx <= 0.0f) vx = 0.0f;
 	//}
 	if (abs(vx) > abs(maxVx)) vx = vx>0? maxVx: -maxVx;
 	//check collision
+	DebugOutTitle(L"%0.3f,%0.3f", this->x, this->y);
 	isOnPlatform = false;
-	DebugOutTitle(L"%0.3f,%0.3f",this->x,this->y);
+	
 	//Collistion::getInstance->process(this);
  }
 
@@ -39,58 +184,37 @@ int PlayableCharacter::GetAnimationID(int i)
 
 int PlayableCharacter::getCorrectAnimation()
 {
-	//return MARIO_STATE_IDLE_LEFT;
-	if (vx * ax < 0) {
-		if (vx > 0) {
-			return MARIO_STATE_BRAKE_RIGHT;
-			
-		}
-		else {
-			return MARIO_STATE_BRAKE_LEFT;
-		}
+	//return SMALL_MARIO_STATE_IDLE_LEFT;
+	switch (powerUpLevel) {
+	case 1:
+		return getAnimationBig();
+	case 2:
+		return getAnimationFire();
+	case 3:
+		return getAnimationTanuki();
+	case 0:
+		return getAnimationSmall();
 	}
-	if (abs(vx) > MARIO_MAX_VELOCITY_WALK) {
-		if (vx > 0) {
-			return MARIO_STATE_RUN_RIGHT;
-		}
-		else {
-			return MARIO_STATE_RUN_LEFT;
-		}
-	}
-	else {
-		if (vx > 0) {
-			return MARIO_STATE_WALK_RIGHT;
-		}
-		if(vx <0) {
-			return MARIO_STATE_WALK_LEFT;
-		}
-		if (vx == 0.0f) {
-			if (state == MARIO_STATE_IDLE_LEFT)
-				return MARIO_STATE_IDLE_LEFT;
-			if (state == MARIO_STATE_IDLE_RIGHT)
-				return MARIO_STATE_IDLE_RIGHT;
-		}
-	}
-	return MARIO_STATE_AIR_LEFT;
+	
 	
 }
 
  void PlayableCharacter::walk(int dir) {
 
 	 if (dir == LEFT) {
-		 this->_setState(MARIO_STATE_WALK_LEFT);
+		 this->_setState(SMALL_MARIO_STATE_WALK_LEFT);
 	 }
 	 if (dir == RIGHT) {
-		 this->_setState(MARIO_STATE_WALK_RIGHT);
+		 this->_setState(SMALL_MARIO_STATE_WALK_RIGHT);
 	 }
  }
  void PlayableCharacter::run(int dir)
  {
 	 if (dir == LEFT) {
-		 this->_setState(MARIO_STATE_RUN_LEFT);
+		 this->_setState(SMALL_MARIO_STATE_RUN_LEFT);
 	 }
 	 if (dir == RIGHT) {
-		 this->_setState(MARIO_STATE_RUN_RIGHT);
+		 this->_setState(SMALL_MARIO_STATE_RUN_RIGHT);
 	 }
 	 //change property + change state for rendering
  }
@@ -99,14 +223,16 @@ int PlayableCharacter::getCorrectAnimation()
  {
 	 //change property + change state for rendering
 	 //checkground
-	 this->_setState(MARIO_STATE_AIR);
+	 this->_setState(SMALL_MARIO_STATE_AIR);
+	 
+	 
 	 //gravity;
 	 //ay = -0.1f;
  }
 
  void PlayableCharacter::releaseJump()
  {
-	 if (vy>7.0f )vy = 7.0f;
+	 if (vy>3.0f )vy = 3.0f;
 	 return;
  }
 
@@ -114,11 +240,11 @@ int PlayableCharacter::getCorrectAnimation()
  {
 	 if (vx == 0.0f) { return; }
 	 if (vx > 0) {
-		 this->_setState(MARIO_STATE_IDLE_RIGHT);
+		 this->_setState(SMALL_MARIO_STATE_IDLE_RIGHT);
 
 	 }
 	 else {
-		 this->_setState(MARIO_STATE_IDLE_LEFT);
+		 this->_setState(SMALL_MARIO_STATE_IDLE_LEFT);
 	 }
  }
 
@@ -130,10 +256,19 @@ int PlayableCharacter::getCorrectAnimation()
  }
  void PlayableCharacter::GetBoundingBox(float& left, float& top, float& right, float& bottom)
  {
-	 left = x - MARIO_WIDTH / 2;
-	 right = x + MARIO_WIDTH;
-	 top = y - MARIO_HEIGHT / 2;
-	 bottom = y + MARIO_HEIGHT;
+	 if (powerUpLevel == 0) {
+		 left = x - SMALL_MARIO_WIDTH * SCALE_WIDTH / 2;
+		 right = left + SMALL_MARIO_WIDTH * SCALE_WIDTH;
+		 top = y - SMALL_MARIO_HEIGHT * SCALE_HEIGHT / 2;
+		 bottom = top + SMALL_MARIO_HEIGHT * SCALE_HEIGHT;
+	 }
+	 else {
+		 left = x - BIG_MARIO_WIDTH * SCALE_WIDTH / 2;
+		 right = left + BIG_MARIO_WIDTH * SCALE_WIDTH;
+		 top = y - BIG_MARIO_HEIGHT * SCALE_HEIGHT / 2;
+		 bottom = top + BIG_MARIO_HEIGHT * SCALE_HEIGHT;
+	 }
+	 
 
  }
  void PlayableCharacter::onCollisionWith(CollisionEvent* e)
@@ -142,7 +277,8 @@ int PlayableCharacter::getCorrectAnimation()
 	 if (e->ny != 0 && e->des->isBlocking())
 	 {
 		 vy = 0;
-		 if (e->ny < 0) isOnPlatform = true;
+		 isOnPlatform = true;
+		 canNormalJump = true;
 	 }
 	 else
 		 if (e->nx != 0 && e->des->isBlocking())
@@ -159,34 +295,47 @@ int PlayableCharacter::getCorrectAnimation()
 	 if (state == MARIO_STATE_DIE) return;
 	 this->state = state;
 	 switch (state) {
-	 case MARIO_STATE_RUN_RIGHT:
+	 case SMALL_MARIO_STATE_RUN_RIGHT:
 		 //if (isSitting) break;
 		 maxVx = MARIO_MAX_VELOCITY_RUN;
 		 ax = MARIO_ACCELARATION_RUN;
 		 //nx = 1;
 		 break;
-	 case MARIO_STATE_RUN_LEFT:
+	 case SMALL_MARIO_STATE_RUN_LEFT:
 		 //if (isSitting) break;
 		 maxVx = MARIO_MAX_VELOCITY_RUN;
 		 ax = -MARIO_ACCELARATION_RUN;
 		 //nx = -1;
 		 break;
-	 case MARIO_STATE_WALK_RIGHT:
+	 case SMALL_MARIO_STATE_WALK_RIGHT:
 		 //if (isSitting) break;
 		 maxVx = MARIO_MAX_VELOCITY_WALK;
 		 ax = MARIO_ACCELARATION_WALK;
 		 //nx = 1;
 		 break;
-	 case MARIO_STATE_WALK_LEFT:
+	 case SMALL_MARIO_STATE_WALK_LEFT:
 		 //if (isSitting) break;
 		 maxVx = MARIO_MAX_VELOCITY_WALK;
 		 ax = -MARIO_ACCELARATION_WALK;
 		 //nx = -1;
 		 break;
-	 case MARIO_STATE_IDLE_LEFT:
-	 case MARIO_STATE_IDLE_RIGHT:
+	 case SMALL_MARIO_STATE_IDLE_LEFT:
+	 case SMALL_MARIO_STATE_IDLE_RIGHT:
 		 ax = -0.0f;
 		 vx = 0.0f;
+		 break;
+	 case SMALL_MARIO_STATE_AIR:
+	 case SMALL_MARIO_STATE_AIR_RIGHT:
+	 case SMALL_MARIO_STATE_AIR_LEFT:
+		 if (vx > MARIO_MAX_VELOCITY_WALK) {
+			 vy = 10.0f;
+			 ay = GRAVITY;
+		}
+		 else {
+			 vy = 7.0f;
+			 ay = GRAVITY;
+		 }
+			
 		 break;
 	 }
 	 //case MARIO_STATE_SIT:

@@ -165,6 +165,7 @@
     <ClInclude Include="SpriteManage.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="WoodenFloor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
@@ -190,6 +191,7 @@
     <ClCompile Include="SpriteManage.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="WoodenFloor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\Asuna\Asu000_00.png" />

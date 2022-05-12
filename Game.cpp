@@ -74,42 +74,43 @@ void Game::run() {
 
 			// we have keyStates, check if what keys are pressed.
 			keyHandler->KeyState((BYTE*)keyStates, lr->Mario);
-			DWORD dwElements = KEYBOARD_BUFFER_SIZE;
-			hr = didv->GetDeviceData(sizeof(DIDEVICEOBJECTDATA), keyEvents, &dwElements, 0);
-			if (FAILED(hr))
-			{
-				DebugOut(L"[ERROR] DINPUT::GetDeviceData failed. Error: %d\n", hr);
-				return;
-			}
+DWORD dwElements = KEYBOARD_BUFFER_SIZE;
+hr = didv->GetDeviceData(sizeof(DIDEVICEOBJECTDATA), keyEvents, &dwElements, 0);
+if (FAILED(hr))
+{
+	DebugOut(L"[ERROR] DINPUT::GetDeviceData failed. Error: %d\n", hr);
+	return;
+}
 
-			// Scan through all buffered events, check if the key is pressed or released
-			// this is keydata. using for detect key up or down
-			for (DWORD i = 0; i < dwElements; i++)
-			{
-				int KeyCode = keyEvents[i].dwOfs;
-				int KeyState = keyEvents[i].dwData;
-				//
-				if ((KeyState & 0x80) > 0)
-					keyHandler->OnKeyDown(KeyCode,lr->Mario);
-				else
-					keyHandler->OnKeyUp(KeyCode,lr->Mario);
-			}
+// Scan through all buffered events, check if the key is pressed or released
+// this is keydata. using for detect key up or down
+for (DWORD i = 0; i < dwElements; i++)
+{
+	int KeyCode = keyEvents[i].dwOfs;
+	int KeyState = keyEvents[i].dwData;
+	//
+	if ((KeyState & 0x80) > 0)
+		keyHandler->OnKeyDown(KeyCode, lr->Mario);
+	else
+		keyHandler->OnKeyUp(KeyCode, lr->Mario);
+}
 
 
 
-			this->Update(dt);
-			drawObject(lr->Mario);
-			for (int i = 0; i < 100; i++) {
-				drawObject(lr->stage_blocks[i]);
-			}
-			spriteObject->End();
-			pSwapChain->Present(0, 0);
+this->Update(dt);
+
+for (int i = 0; i < lr->stage_blocks.size(); i++) {
+	drawObject(lr->stage_blocks[i]);
+}
+drawObject(lr->Mario);
+spriteObject->End();
+pSwapChain->Present(0, 0);
 		}
 		else
-			Sleep((DWORD)(tickPerFrame - dt));
-		
+		Sleep((DWORD)(tickPerFrame - dt));
+
 	}
-	return ;
+	return;
 }
 void Game::InitKeyboard()
 {
@@ -167,6 +168,22 @@ void Game::InitKeyboard()
 
 	DebugOut(L"[INFO] Keyboard has been initialized successfully\n");
 }
+void Game::drawWoondenFloor(GameObject* _in)
+{
+	WoodenFloor* object = dynamic_cast<WoodenFloor*>(_in);
+	int width, height, spriteID;
+	float x, y;
+	object->getSize(width, height);
+	SpriteManage* sm = SpriteManage::getInstance();
+	for (int h_iter = 0; h_iter < height; h_iter++) {
+		for (int w_iter = 0; w_iter < width; w_iter++) {
+			spriteID = object->getCorrectSprite(w_iter, h_iter);
+			object->getCorrectSpritePosition(w_iter, h_iter, x, y);
+			Sprite* pSprite = sm->Get(spriteID);
+			drawSprite(x, y, pSprite);
+		}
+	}
+}
 void Game::drawSprite(float x, float y, Sprite* sprite)
 {
 	float x_cord = x;
@@ -179,16 +196,22 @@ void Game::drawSprite(float x, float y, Sprite* sprite)
 }
 void Game::drawObject(GameObject* object)
 {
-	float x= object->GetX();
+	float x = object->GetX();
 	float y = object->GetY();
 	AnimationManage* am = AnimationManage::getInstance();
+	if (dynamic_cast<PlayableCharacter*>(object)){
+		int aniID = object->getCorrectAnimation();
+		Animation* ani = am->Get(aniID);
+		int spriteID = ani->getCorrectSpriteID();
+		SpriteManage* sm = SpriteManage::getInstance();
+		Sprite* pSprite = sm->Get(spriteID);
+		drawSprite(x, y, pSprite);
+	}
+	if (dynamic_cast<WoodenFloor*>(object)) {
+			drawWoondenFloor(object);
+	}
+			
 
-	int aniID = object->getCorrectAnimation();
-	Animation* ani = am->Get(aniID);
-	int spriteID = ani->getCorrectSpriteID();
-	SpriteManage* sm = SpriteManage::getInstance();
-	Sprite* pSprite = sm->Get(spriteID);
-	drawSprite(x, y,pSprite);
 }
 void Game::LoadResources()
 {

@@ -5,7 +5,7 @@
 #include "GlobalDefine.h"
 #include "debug.h"
 
-#define BLOCK_PUSH_FACTOR 0.004f
+#define BLOCK_PUSH_FACTOR 1.0f
 LoadedResources* LoadedResources::__instance = NULL;
 void LoadedResources::_SweptAABB(float ml, float mt, float mr, float mb, float dx, float dy, float sl, float st, float sr, float sb, float& t, float& nx, float& ny)
 {
@@ -171,6 +171,245 @@ void LoadedResources::Filter(GameObject* objSrc,
 	colX = c1;
 
 }
+void LoadedResources::loadMarioSprite()
+{
+	SpriteManage* sm = SpriteManage::getInstance();
+	TextureManager* tm = TextureManager::getInstance();
+	//mario line 1 sprite
+	sm->Add(0, 0, 0, 445, 1597, tm->getTextureWithId(0));
+	sm->Add(10101, 0, 0, 24, 19, tm->getTextureWithId(0));
+	sm->Add(10102, 30, 0, 54, 19, tm->getTextureWithId(0));
+	sm->Add(10103, 60, 0, 84, 19, tm->getTextureWithId(0));
+	sm->Add(10104, 90, 0, 114, 19, tm->getTextureWithId(0));
+	sm->Add(10105, 120, 0, 144, 19, tm->getTextureWithId(0));
+	sm->Add(10106, 150, 0, 174, 19, tm->getTextureWithId(0));
+	sm->Add(10107, 180, 0, 204, 19, tm->getTextureWithId(0));
+	sm->Add(10108, 210, 0, 234, 19, tm->getTextureWithId(0));
+	sm->Add(10109, 240, 0, 264, 19, tm->getTextureWithId(0));
+	sm->Add(10110, 270, 0, 294, 19, tm->getTextureWithId(0));
+	sm->Add(10111, 300, 0, 324, 19, tm->getTextureWithId(0));
+	sm->Add(10112, 330, 0, 354, 19, tm->getTextureWithId(0));
+	sm->Add(10113, 360, 0, 384, 19, tm->getTextureWithId(0));
+	sm->Add(10114, 390, 0, 414, 19, tm->getTextureWithId(0));
+	sm->Add(10115, 420, 0, 444, 19, tm->getTextureWithId(0));
+	//mario line 2 sprite
+	sm->Add(10201, 0, 40, 24, 59, tm->getTextureWithId(0));
+	sm->Add(10202, 30, 40, 54, 59, tm->getTextureWithId(0));
+	sm->Add(10203, 60, 40, 84, 59, tm->getTextureWithId(0));
+	sm->Add(10204, 90, 40, 114, 59, tm->getTextureWithId(0));
+	sm->Add(10205, 120, 40, 144, 59, tm->getTextureWithId(0));
+	sm->Add(10206, 150, 40, 174, 59, tm->getTextureWithId(0));
+	sm->Add(10207, 180, 40, 204, 59, tm->getTextureWithId(0));
+	sm->Add(10208, 210, 40, 234, 59, tm->getTextureWithId(0));
+	sm->Add(10209, 240, 40, 264, 59, tm->getTextureWithId(0));
+	sm->Add(10210, 270, 40, 294, 59, tm->getTextureWithId(0));
+	sm->Add(10211, 300, 40, 324, 59, tm->getTextureWithId(0));
+	sm->Add(10212, 330, 40, 354, 59, tm->getTextureWithId(0));
+	sm->Add(10213, 360, 40, 384, 59, tm->getTextureWithId(0));
+	sm->Add(10214, 390, 40, 414, 59, tm->getTextureWithId(0));
+	sm->Add(10215, 420, 40, 444, 59, tm->getTextureWithId(0));
+	//line 3 sprite
+	sm->Add(10301, 0, 80, 24, 99, tm->getTextureWithId(0));
+	sm->Add(10302, 30, 80, 54, 99, tm->getTextureWithId(0));
+	sm->Add(10303, 60, 80, 84, 99, tm->getTextureWithId(0));
+	sm->Add(10304, 90, 80, 114, 99, tm->getTextureWithId(0));
+	sm->Add(10305, 120, 80, 144, 99, tm->getTextureWithId(0));
+	sm->Add(10306, 150, 80, 174, 99, tm->getTextureWithId(0));
+	sm->Add(10307, 180, 80, 204, 99, tm->getTextureWithId(0));
+	sm->Add(10308, 210, 80, 234, 99, tm->getTextureWithId(0));
+	sm->Add(10309, 240, 80, 264, 99, tm->getTextureWithId(0));
+	sm->Add(10310, 270, 80, 294, 99, tm->getTextureWithId(0));
+	sm->Add(10311, 300, 80, 324, 99, tm->getTextureWithId(0));
+	sm->Add(10312, 330, 80, 354, 99, tm->getTextureWithId(0));
+	sm->Add(10313, 360, 80, 384, 99, tm->getTextureWithId(0));
+	sm->Add(10314, 390, 80, 414, 99, tm->getTextureWithId(0));
+	sm->Add(10315, 420, 80, 444, 99, tm->getTextureWithId(0));
+	//line 4 sprite
+	sm->Add(10401, 0, 120, 24, 139, tm->getTextureWithId(0));
+	sm->Add(10402, 30, 120, 54, 139, tm->getTextureWithId(0));
+	sm->Add(10403, 60, 120, 84, 139, tm->getTextureWithId(0));
+	sm->Add(10404, 90, 120, 114, 139, tm->getTextureWithId(0));
+	sm->Add(10405, 120, 120, 144, 139, tm->getTextureWithId(0));
+	sm->Add(10406, 150, 120, 174, 139, tm->getTextureWithId(0));
+	sm->Add(10407, 180, 120, 204, 139, tm->getTextureWithId(0));
+	sm->Add(10408, 210, 120, 234, 139, tm->getTextureWithId(0));
+	sm->Add(10409, 240, 120, 264, 139, tm->getTextureWithId(0));
+	sm->Add(10410, 270, 120, 294, 139, tm->getTextureWithId(0));
+	sm->Add(10411, 300, 120, 324, 139, tm->getTextureWithId(0));
+	sm->Add(104012, 330, 120, 354, 139, tm->getTextureWithId(0));
+	sm->Add(10413, 360, 120, 384, 139, tm->getTextureWithId(0));
+	sm->Add(10414, 390, 120, 414, 139, tm->getTextureWithId(0));
+	sm->Add(10415, 420, 120, 444, 139, tm->getTextureWithId(0));
+	//line 5 to 22 sprite
+	for (int i = 0; i < 18; i++) {
+		for (int j = 0; j < 15; j++) {
+			sm->Add(10000+(i+5)*100+j+1, j*30, (i*40)+154, (j*30)+24, (i*40) + 182, tm->getTextureWithId(0));
+		}
+	}
+	//sm->Add(1501, 0, 154, 24, 182, tm->getTextureWithId(0));
+	//sm->Add(1502, 30, 154, 54, 182, tm->getTextureWithId(0));
+	//sm->Add(1503, 60, 154, 84, 182, tm->getTextureWithId(0));
+	//sm->Add(1504, 90, 154, 114, 182, tm->getTextureWithId(0));
+	//sm->Add(1505, 120, 154, 144, 182, tm->getTextureWithId(0));
+	//sm->Add(1506, 150, 154, 174, 182, tm->getTextureWithId(0));
+	//sm->Add(1507, 180, 154, 204, 182, tm->getTextureWithId(0));
+	//sm->Add(1508, 210, 154, 234, 182, tm->getTextureWithId(0));
+	//sm->Add(1509, 240, 154, 264, 182, tm->getTextureWithId(0));
+	//sm->Add(1510, 270, 154, 294, 182, tm->getTextureWithId(0));
+	//sm->Add(1511, 300, 154, 324, 182, tm->getTextureWithId(0));
+	//sm->Add(1512, 330, 154, 354, 182, tm->getTextureWithId(0));
+	//sm->Add(1513, 360, 154, 384, 182, tm->getTextureWithId(0));
+	//sm->Add(1514, 390, 154, 414, 182, tm->getTextureWithId(0));
+	//sm->Add(1515, 420, 154, 444, 182, tm->getTextureWithId(0));
+	////line 6 sprite
+	//sm->Add(1501, 0, 194, 24, 222, tm->getTextureWithId(0));
+	//sm->Add(1502, 30, 194, 54, 222, tm->getTextureWithId(0));
+	//sm->Add(1503, 60, 194, 84, 222, tm->getTextureWithId(0));
+	//sm->Add(1504, 90, 194, 114, 222, tm->getTextureWithId(0));
+	//sm->Add(1505, 120, 194, 144, 222, tm->getTextureWithId(0));
+	//sm->Add(1506, 150, 194, 174, 222, tm->getTextureWithId(0));
+	//sm->Add(1507, 180, 194, 204, 222, tm->getTextureWithId(0));
+	//sm->Add(1508, 210, 194, 234, 222, tm->getTextureWithId(0));
+	//sm->Add(1509, 240, 194, 264, 222, tm->getTextureWithId(0));
+	//sm->Add(1510, 270, 194, 294, 222, tm->getTextureWithId(0));
+	//sm->Add(1511, 300, 194, 324, 222, tm->getTextureWithId(0));
+	//sm->Add(1512, 330, 194, 354, 222, tm->getTextureWithId(0));
+	//sm->Add(1513, 360, 194, 384, 222, tm->getTextureWithId(0));
+	//sm->Add(1514, 390, 194, 414, 222, tm->getTextureWithId(0));
+	//sm->Add(1515, 420, 194, 444, 222, tm->getTextureWithId(0));
+	////line 8 sprite
+	//sm->Add(1501, 0, 194, 24, 222, tm->getTextureWithId(0));
+	//sm->Add(1502, 30, 194, 54, 222, tm->getTextureWithId(0));
+	//sm->Add(1503, 60, 194, 84, 222, tm->getTextureWithId(0));
+	//sm->Add(1504, 90, 194, 114, 222, tm->getTextureWithId(0));
+	//sm->Add(1505, 120, 194, 144, 222, tm->getTextureWithId(0));
+	//sm->Add(1506, 150, 194, 174, 222, tm->getTextureWithId(0));
+	//sm->Add(1507, 180, 194, 204, 222, tm->getTextureWithId(0));
+	//sm->Add(1508, 210, 194, 234, 222, tm->getTextureWithId(0));
+	//sm->Add(1509, 240, 194, 264, 222, tm->getTextureWithId(0));
+	//sm->Add(1510, 270, 194, 294, 222, tm->getTextureWithId(0));
+	//sm->Add(1511, 300, 194, 324, 222, tm->getTextureWithId(0));
+	//sm->Add(1512, 330, 194, 354, 222, tm->getTextureWithId(0));
+	//sm->Add(1513, 360, 194, 384, 222, tm->getTextureWithId(0));
+	//sm->Add(1514, 390, 194, 414, 222, tm->getTextureWithId(0));
+	//sm->Add(1515, 420, 194, 444, 222, tm->getTextureWithId(0));
+	
+}
+void LoadedResources::createMarioAnimation()
+{
+	createSmallMarioAnimation();
+	createBigMarioAnimation();
+}
+void LoadedResources::createSmallMarioAnimation()
+{
+	AnimationManage* am = AnimationManage::getInstance();
+	Animation* pAni;
+	//idle face left
+	pAni = new Animation(100);
+	pAni->Add(10107, 5);
+	am->Add(100, pAni);
+	//idle face right
+	pAni = new Animation(100);
+	pAni->Add(10109, 5);
+	am->Add(101, pAni);
+
+	//walk face left
+	pAni = new Animation(100);
+	pAni->Add(10105, 5);
+	pAni->Add(10107, 5);
+	am->Add(102, pAni);
+
+	//walk face right
+	pAni = new Animation(100);
+	pAni->Add(10111, 5);
+	pAni->Add(10109, 5);
+	am->Add(103, pAni);
+
+	//normal jump face left
+	pAni = new Animation(100);
+	pAni->Add(10302, 5);
+	am->Add(104, pAni);
+
+	//normal jump face right
+	pAni = new Animation(100);
+	pAni->Add(10314, 5);
+	am->Add(105, pAni);
+
+	//p speed face left
+	pAni = new Animation(100);
+	pAni->Add(10301, 5);
+	pAni->Add(10106, 5);
+	am->Add(106, pAni);
+	//p speed face right
+	pAni = new Animation(100);
+	pAni->Add(10110, 3);
+	pAni->Add(10315, 3);
+	am->Add(107, pAni);
+	//break left
+	pAni = new Animation(100);
+	pAni->Add(10115, 3);
+	am->Add(108, pAni);
+	//break right
+	pAni = new Animation(100);
+	pAni->Add(10101, 3);
+	am->Add(109, pAni);
+}
+void LoadedResources::createBigMarioAnimation()
+{
+	AnimationManage* am = AnimationManage::getInstance();
+	Animation* pAni;
+	//idle face left
+	pAni = new Animation(100);
+	pAni->Add(10507, 5);
+	am->Add(BIG_MARIO_STATE_IDLE_LEFT, pAni);
+	//idle face right
+	pAni = new Animation(100);
+	pAni->Add(10509, 5);
+	am->Add(BIG_MARIO_STATE_IDLE_RIGHT, pAni);
+
+	//walk face left
+	pAni = new Animation(100);
+	pAni->Add(10505, 5);
+	pAni->Add(10507, 5);
+	am->Add(BIG_MARIO_STATE_WALK_LEFT, pAni);
+
+	//walk face right
+	pAni = new Animation(100);
+	pAni->Add(10511, 5);
+	pAni->Add(10509, 5);
+	am->Add(BIG_MARIO_STATE_WALK_RIGHT, pAni);
+
+	//normal jump face left
+	pAni = new Animation(100);
+	pAni->Add(10802, 5);
+	am->Add(BIG_MARIO_STATE_AIR_LEFT, pAni);
+
+	//normal jump face right
+	pAni = new Animation(100);
+	pAni->Add(10814, 5);
+	am->Add(BIG_MARIO_STATE_AIR_RIGHT, pAni);
+
+	//p speed face left
+	pAni = new Animation(100);
+	pAni->Add(10502, 5);
+	pAni->Add(10503, 5);
+	pAni->Add(10504, 5);
+	am->Add(BIG_MARIO_STATE_RUN_LEFT, pAni);
+	//p speed face right
+	pAni = new Animation(100);
+	pAni->Add(10513, 3);
+	pAni->Add(10512, 3);
+	pAni->Add(10514, 3);
+	am->Add(BIG_MARIO_STATE_RUN_RIGHT, pAni);
+	//break left
+	pAni = new Animation(100);
+	pAni->Add(10515, 3);
+	am->Add(BIG_MARIO_STATE_BRAKE_LEFT, pAni);
+	//break right
+	pAni = new Animation(100);
+	pAni->Add(10501, 3);
+	am->Add(BIG_MARIO_STATE_BRAKE_RIGHT, pAni);
+}
 LoadedResources* LoadedResources::getInstance()
 {
 	if (__instance == NULL) __instance = new LoadedResources();
@@ -179,10 +418,10 @@ LoadedResources* LoadedResources::getInstance()
 
 void LoadedResources::LoadResources()
 {
-	SpriteManage* sm = SpriteManage::getInstance();
+	
 	TextureManager* tm = TextureManager::getInstance();
 	AnimationManage* am = AnimationManage::getInstance();
-	
+	SpriteManage* sm = SpriteManage::getInstance();
 
 	Animation* pAni;
 	//idle animation;
@@ -190,73 +429,7 @@ void LoadedResources::LoadResources()
 	tm->Add(1, ENEMY_TEX);
 	tm->Add(2, MISC_TEX);
 	tm->Add(3, TILE_TEX);
-	//mario line 1 sprite
-	sm->Add(0,0, 0, 445, 1597, tm->getTextureWithId(0));
-	sm->Add(1101,   0, 0,  24, 19, tm->getTextureWithId(0));
-	sm->Add(1102,  30, 0,  54, 19, tm->getTextureWithId(0));
-	sm->Add(1103,  60, 0,  84, 19, tm->getTextureWithId(0));
-	sm->Add(1104,  90, 0, 114, 19, tm->getTextureWithId(0));
-	sm->Add(1105, 120, 0, 144, 19, tm->getTextureWithId(0));
-	sm->Add(1106, 150, 0, 174, 19, tm->getTextureWithId(0));
-	sm->Add(1107, 180, 0, 204, 19, tm->getTextureWithId(0));
-	sm->Add(1108, 210, 0, 234, 19, tm->getTextureWithId(0));
-	sm->Add(1109, 240, 0, 264, 19, tm->getTextureWithId(0));
-	sm->Add(1110, 270, 0, 294, 19, tm->getTextureWithId(0));
-	sm->Add(1111, 300, 0, 324, 19, tm->getTextureWithId(0));
-	sm->Add(1112, 330, 0, 354, 19, tm->getTextureWithId(0));
-	sm->Add(1113, 360, 0, 384, 19, tm->getTextureWithId(0));
-	sm->Add(1114, 390, 0, 414, 19, tm->getTextureWithId(0));
-	sm->Add(1115, 420, 0, 444, 19, tm->getTextureWithId(0));
-	//mario line 2 sprite
-	sm->Add(1201,   0, 40,  24, 59, tm->getTextureWithId(0));
-	sm->Add(1202,  30, 40,  54, 59, tm->getTextureWithId(0));
-	sm->Add(1203,  60, 40,  84, 59, tm->getTextureWithId(0));
-	sm->Add(1204,  90, 40, 114, 59, tm->getTextureWithId(0));
-	sm->Add(1205, 120, 40, 144, 59, tm->getTextureWithId(0));
-	sm->Add(1206, 150, 40, 174, 59, tm->getTextureWithId(0));
-	sm->Add(1207, 180, 40, 204, 59, tm->getTextureWithId(0));
-	sm->Add(1208, 210, 40, 234, 59, tm->getTextureWithId(0));
-	sm->Add(1209, 240, 40, 264, 59, tm->getTextureWithId(0));
-	sm->Add(1210, 270, 40, 294, 59, tm->getTextureWithId(0));
-	sm->Add(1211, 300, 40, 324, 59, tm->getTextureWithId(0));
-	sm->Add(1212, 330, 40, 354, 59, tm->getTextureWithId(0));
-	sm->Add(1213, 360, 40, 384, 59, tm->getTextureWithId(0));
-	sm->Add(1214, 390, 40, 414, 59, tm->getTextureWithId(0));
-	sm->Add(1215, 420, 40, 444, 59, tm->getTextureWithId(0));
-	//line 3 sprite
-	sm->Add(1301,  0,  80,  24, 99, tm->getTextureWithId(0));
-	sm->Add(1302,  30, 80,  54, 99, tm->getTextureWithId(0));
-	sm->Add(1303,  60, 80,  84, 99, tm->getTextureWithId(0));
-	sm->Add(1304,  90, 80, 114, 99, tm->getTextureWithId(0));
-	sm->Add(1305, 120, 80, 144, 99, tm->getTextureWithId(0));
-	sm->Add(1306, 150, 80, 174, 99, tm->getTextureWithId(0));
-	sm->Add(1307, 180, 80, 204, 99, tm->getTextureWithId(0));
-	sm->Add(1308, 210, 80, 234, 99, tm->getTextureWithId(0));
-	sm->Add(1309, 240, 80, 264, 99, tm->getTextureWithId(0));
-	sm->Add(1310, 270, 80, 294, 99, tm->getTextureWithId(0));
-	sm->Add(1311, 300, 80, 324, 99, tm->getTextureWithId(0));
-	sm->Add(1312, 330, 80, 354, 99, tm->getTextureWithId(0));
-	sm->Add(1313, 360, 80, 384, 99, tm->getTextureWithId(0));
-	sm->Add(1314, 390, 80, 414, 99, tm->getTextureWithId(0));
-	sm->Add(1315, 420, 80, 444, 99, tm->getTextureWithId(0));
-	//line 4 sprite
-	sm->Add(1401,   0, 120,  24, 139, tm->getTextureWithId(0));
-	sm->Add(1402,  30, 120,  54, 139, tm->getTextureWithId(0));
-	sm->Add(1403,  60, 120,  84, 139, tm->getTextureWithId(0));
-	sm->Add(1404,  90, 120, 114, 139, tm->getTextureWithId(0));
-	sm->Add(1405, 120, 120, 144, 139, tm->getTextureWithId(0));
-	sm->Add(1406, 150, 120, 174, 139, tm->getTextureWithId(0));
-	sm->Add(1407, 180, 120, 204, 139, tm->getTextureWithId(0));
-	sm->Add(1408, 210, 120, 234, 139, tm->getTextureWithId(0));
-	sm->Add(1409, 240, 120, 264, 139, tm->getTextureWithId(0));
-	sm->Add(1410, 270, 120, 294, 139, tm->getTextureWithId(0));
-	sm->Add(1411, 300, 120, 324, 139, tm->getTextureWithId(0));
-	sm->Add(1412, 330, 120, 354, 139, tm->getTextureWithId(0));
-	sm->Add(1413, 360, 120, 384, 139, tm->getTextureWithId(0));
-	sm->Add(1414, 390, 120, 414, 139, tm->getTextureWithId(0));
-	sm->Add(1415, 420, 120, 444, 139, tm->getTextureWithId(0));
-
-
+	loadMarioSprite();
 	// misc sprite.
 	//golden brick
 	sm->Add(2101, 300, 135, 315, 150, tm->getTextureWithId(2));
@@ -267,71 +440,23 @@ void LoadedResources::LoadResources()
 
 	// tile
 	for (int i = 0; i < 42; i++) {
-		for (int j = 0; i < 42; i++) {
+		for (int j = 0; j < 42; j++) {
 			int _top = 2*(i+1) + (i * 16);
-			int _left = 2 * (i + 1) + (i * 16);
+			int _left = 2 * (j + 1) + (j * 16);
 			int _right = _left + 16;
 			int _bottom = _top + 16;
-			sm->Add(30000 + i * 100 + j, _top, _left, _right, _bottom,tm->getTextureWithId(3));
+			sm->Add(30000 + (i+1) * 100 + (j+1),  _left, _top, _right, _bottom,tm->getTextureWithId(3));
 		}
 	}
-	//idle face left
-	pAni = new Animation(100);
-	pAni->Add(1107,5);
-	am->Add(100, pAni);
-	//idle face right
-	pAni = new Animation(100);
-	pAni->Add(1109, 5);
-	am->Add(101, pAni);
-
-	//walk face left
-	pAni = new Animation(100);
-	pAni->Add(1105, 5);
-	pAni->Add(1107, 5);
-	am->Add(102, pAni);
-	
-	//walk face right
-	pAni = new Animation(100);
-	pAni->Add(1111, 5);
-	pAni->Add(1109, 5);
-	am->Add(103, pAni);
-
-	//normal jump face left
-	pAni = new Animation(100);
-	pAni->Add(1302, 5);
-	am->Add(104, pAni);
-
-	//normal jump face right
-	pAni = new Animation(100);
-	pAni->Add(1314, 5);
-	am->Add(105, pAni);
-
-	//p speed face left
-	pAni = new Animation(100);
-	pAni->Add(1301, 5);
-	pAni->Add(1106, 5);
-	am->Add(106, pAni);
-	//p speed face right
-	pAni = new Animation(100);
-	pAni->Add(1110, 3);
-	pAni->Add(1315, 3);
-	am->Add(107, pAni);
-	//break left
-	pAni = new Animation(100);
-	pAni->Add(1115, 3);
-	am->Add(108, pAni);
-	//break right
-    pAni = new Animation(100);
-	pAni->Add(1101, 3);
-	am->Add(109, pAni);
-
+	createMarioAnimation();
+	// create brick animation;
 	Animation* pBrickAnimation = new Animation(100);
 	pBrickAnimation->Add(2101, 3);
 	pBrickAnimation->Add(2102, 3);
 	pBrickAnimation->Add(2103, 3);
 	pBrickAnimation->Add(2104, 3);
 	pBrickAnimation->Add(2105, 3);
-	am->Add(201, pBrickAnimation);
+	am->Add(2001, pBrickAnimation);
 
 
 	Mario = new PlayableCharacter(20.f,200.0f);
@@ -344,10 +469,15 @@ void LoadedResources::LoadResources()
 	Mario->AddAnimation(105);
 	Mario->AddAnimation(106);
 	Mario->AddAnimation(107);*/
-	for (int i = 0; i < 100; i++){
-		stage_blocks.push_back(new Platform(30.0f * (i)+15.0f, 15.0f));
-		stage_blocks[i]->AddAnimation(201);
+	stage_blocks.push_back(new WoodenFloor(40.0f, 40.0f, 39, 2));
+	/*for (int i = 0; i < 20; i++){
+		stage_blocks.push_back(new Platform(SCALE_WIDTH*BRICK_WIDTH*(i)+20.0f, SCALE_HEIGHT*BRICK_HEIGHT/2));
+		stage_blocks[i]->AddAnimation(2001);
 	}
+	for (int i = 0; i < 20; i++) {
+		stage_blocks.push_back(new Platform(200.0f, SCALE_HEIGHT * BRICK_HEIGHT *(i)+20.0f));
+		stage_blocks[i+20]->AddAnimation(2001);
+	}*/
 }
 
 void LoadedResources::Update(DWORD dt)
@@ -373,6 +503,7 @@ void LoadedResources::Update(DWORD dt)
 		//get who have collision first in X axis and Y axis
 
 		Filter(Mario, collisionEvents, colX, colY);
+		
 		float x, y, vx, vy, dx, dy;
 		Mario->GetPosition(x, y);
 		Mario->GetSpeed(vx, vy);
@@ -406,8 +537,15 @@ void LoadedResources::Update(DWORD dt)
 
 				if (colX_other != NULL)
 				{
-					x += colX_other->t * dx + colX_other->nx * BLOCK_PUSH_FACTOR;
-					Mario->onCollisionWith(colX_other);
+					
+					if (colX_other->t < 0) {
+					}
+					else {
+						x += colX_other->t * dx + colX_other->nx * BLOCK_PUSH_FACTOR;
+						SweptAABB(Mario, dt, colX_other->des);
+						Mario->onCollisionWith(colX_other);
+					}
+					
 				}
 				else
 				{
@@ -417,6 +555,7 @@ void LoadedResources::Update(DWORD dt)
 			else // collision on X first
 			{
 				x += colX->t * dx + colX->nx * BLOCK_PUSH_FACTOR;
+				SweptAABB(Mario, dt, colX->des);
 				Mario->SetPosition(x, y);
 
 				Mario->onCollisionWith(colX);
@@ -440,7 +579,7 @@ void LoadedResources::Update(DWORD dt)
 				if (colY_other != NULL)
 				{
 					y += colY_other->t * dy + colY_other->ny * BLOCK_PUSH_FACTOR;
-					Mario->onCollisionWith(colY_other);
+				    Mario->onCollisionWith(colY_other);
 				}
 				else
 				{
@@ -460,7 +599,6 @@ void LoadedResources::Update(DWORD dt)
 				{
 					x += dx;
 					y += colY->t * dy + colY->ny * BLOCK_PUSH_FACTOR;
-					SweptAABB(Mario, dt, colY->des);
 					Mario->onCollisionWith(colY);
 				}
 				else // both colX & colY are NULL 
@@ -468,9 +606,10 @@ void LoadedResources::Update(DWORD dt)
 					x += dx;
 					y += dy;
 				}
-
+		
 		Mario->SetPosition(x, y);
 	}
+	
 
 	////
 	//// Scan all non-blocking collisions for further collision logic
@@ -486,4 +625,6 @@ void LoadedResources::Update(DWORD dt)
 
 
 	for (UINT i = 0; i < collisionEvents.size(); i++) delete collisionEvents[i];
+
+
 }

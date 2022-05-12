@@ -60,7 +60,7 @@ public:
         this->Draw(x, y, tex, &rect);
     }
     void InitKeyboard();
-
+    void drawWoondenFloor(GameObject* object);
     Texture* LoadTexture(LPCWSTR texturePath);
     ID3D10Device* getDevice() { return pD3DDevice; }
     IDXGISwapChain* getSwapChain() { return pSwapChain; }
@@ -74,5 +74,6 @@ public:
     void drawObject(GameObject* object);
     void LoadResources();
     void Update(DWORD dt);
+    void drawPlatform(GameObject* object);
 };
 

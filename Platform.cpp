@@ -23,8 +23,8 @@ void Platform::AddAnimation(int id)
 
 void Platform::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
-	left = x - BRICK_WIDTH / 2;
-	top = y - BRICK_HEIGHT / 2;
-	right = left + BRICK_WIDTH;
-	bottom = top + BRICK_HEIGHT;
+	left = x - BRICK_WIDTH*SCALE_WIDTH / 2;
+	top = y - BRICK_HEIGHT*SCALE_HEIGHT / 2;
+	right = left + BRICK_WIDTH * SCALE_WIDTH;
+	bottom = top + BRICK_HEIGHT * SCALE_HEIGHT;
 }
