@@ -18,9 +18,11 @@ WoodenFloor::WoodenFloor(float x, float y, int width, int height):GameObject(x,y
 void WoodenFloor::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
 	left = x - BRICK_WIDTH * SCALE_WIDTH / 2;
-	bottom = y + BRICK_HEIGHT * height*SCALE_HEIGHT / 2;
+	top = y- BRICK_HEIGHT * SCALE_HEIGHT / 2;
+	bottom = top + BRICK_WIDTH * height * SCALE_WIDTH;
 	right = left + BRICK_WIDTH * width * SCALE_WIDTH;
-	top = bottom - BRICK_HEIGHT * SCALE_HEIGHT/2*height;
+	
+	
 }
 
 int WoodenFloor::getCorrectSprite(int w_iter, int h_iter)

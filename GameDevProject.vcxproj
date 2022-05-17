@@ -157,10 +157,13 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GlobalDefine.h" />
+    <ClInclude Include="Goomba.h" />
     <ClInclude Include="KeyEventHandler.h" />
     <ClInclude Include="LoadedResources.h" />
+    <ClInclude Include="Pipe.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="PlayableCharacter.h" />
+    <ClInclude Include="QuestionBlock.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteManage.h" />
     <ClInclude Include="Texture.h" />
@@ -179,13 +182,16 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Goomba.cpp" />
     <ClCompile Include="KeyEventHandler.cpp" />
     <ClCompile Include="LoadedResources.cpp" />
     <ClCompile Include="main.cpp">
       <DeploymentContent>true</DeploymentContent>
     </ClCompile>
+    <ClCompile Include="Pipe.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="PlayableCharacter.cpp" />
+    <ClCompile Include="QuestionBlock.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteManage.cpp" />

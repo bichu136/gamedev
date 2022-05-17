@@ -1,11 +1,31 @@
 #include "PlayableCharacter.h"
 #include "GlobalDefine.h"
+#include "QuestionBlock.h"
+#include "WoodenFloor.h"
 #include "debug.h"
-#define MARIO_MAX_VELOCITY_WALK 3.0f
-#define MARIO_MAX_VELOCITY_RUN 7.0f
-#define MARIO_ACCELARATION_WALK 0.2f
-#define MARIO_ACCELARATION_RUN 0.225f
-#define GRAVITY -0.1f
+#include "Goomba.h"
+#include "LoadedResources.h"
+#define MARIO_MAX_VELOCITY_WALK 6.0f
+#define MARIO_MAX_VELOCITY_RUN 14.0f
+#define MARIO_ACCELARATION_WALK 0.5f
+#define MARIO_ACCELARATION_RUN 0.7f
+#define GRAVITY -0.6f
+void PlayableCharacter::tryToAttack()
+{
+	LoadedResources* lr = LoadedResources::getInstance();
+	switch (powerUpLevel) {
+	
+	case 2:
+		createAttackFire();
+		break;
+	case 3:
+		createAttackTanuki();
+		break;
+	case 0:
+	case 1:
+		break;
+	}
+}
 PlayableCharacter::PlayableCharacter(float x, float y):GameObject(x,y)
 {
 	vx = 0.0f;
@@ -93,20 +113,20 @@ int PlayableCharacter::getAnimationBig()
 	}
 	else {
 		if (vx > 0) {
-			state = SMALL_MARIO_STATE_AIR_RIGHT;
-			return SMALL_MARIO_STATE_AIR_RIGHT;
+			state = BIG_MARIO_STATE_AIR_RIGHT;
+			return BIG_MARIO_STATE_AIR_RIGHT;
 
 		}
 		else if (vx < 0) {
-			state = SMALL_MARIO_STATE_AIR_LEFT;
-			return SMALL_MARIO_STATE_AIR_LEFT;
+			state = BIG_MARIO_STATE_AIR_LEFT;
+			return BIG_MARIO_STATE_AIR_LEFT;
 		}
 		if (state % 2 == 0) {
-			state = SMALL_MARIO_STATE_AIR_LEFT;
+			state = BIG_MARIO_STATE_AIR_LEFT;
 			return state;
 		}
 		else {
-			state = SMALL_MARIO_STATE_AIR_RIGHT;
+			state = BIG_MARIO_STATE_AIR_RIGHT;
 			return state;
 		}
 
@@ -149,16 +169,135 @@ int PlayableCharacter::getAnimationBig()
 
 int PlayableCharacter::getAnimationFire()
 {
-	return getAnimationBig();
+	if (vy <= 0.0f && vy >= -1.0f) {
+
+	}
+	else {
+		if (vx > 0) {
+			state = FIRE_MARIO_STATE_AIR_RIGHT;
+			return FIRE_MARIO_STATE_AIR_RIGHT;
+
+		}
+		else if (vx < 0) {
+			state = FIRE_MARIO_STATE_AIR_LEFT;
+			return FIRE_MARIO_STATE_AIR_LEFT;
+		}
+		if (state % 2 == 0) {
+			state = FIRE_MARIO_STATE_AIR_LEFT;
+			return state;
+		}
+		else {
+			state = FIRE_MARIO_STATE_AIR_RIGHT;
+			return state;
+		}
+
+	}
+
+
+	if (vx * ax < 0) {
+		if (vx > 0) {
+			return FIRE_MARIO_STATE_BRAKE_RIGHT;
+
+		}
+		else {
+			return FIRE_MARIO_STATE_BRAKE_LEFT;
+		}
+	}
+	if (abs(vx) > MARIO_MAX_VELOCITY_WALK) {
+		if (vx > 0) {
+			return FIRE_MARIO_STATE_RUN_RIGHT;
+		}
+		else {
+			return FIRE_MARIO_STATE_RUN_LEFT;
+		}
+	}
+	else {
+		if (vx > 0) {
+			return FIRE_MARIO_STATE_WALK_RIGHT;
+		}
+		if (vx < 0) {
+			return FIRE_MARIO_STATE_WALK_LEFT;
+		}
+		if (vx == 0.0f) {
+			if (state == SMALL_MARIO_STATE_IDLE_LEFT)
+				return FIRE_MARIO_STATE_IDLE_LEFT;
+			if (state == SMALL_MARIO_STATE_IDLE_RIGHT)
+				return FIRE_MARIO_STATE_IDLE_RIGHT;
+		}
+	}
+	return FIRE_MARIO_STATE_AIR_LEFT;
 }
 
 int PlayableCharacter::getAnimationTanuki()
 {
-	return getAnimationBig();
+	if (vy <= 0.0f && vy >= -1.0f) {
+
+	}
+	else {
+		if (vx > 0) {
+			state = TANUKI_MARIO_STATE_AIR_RIGHT;
+			return TANUKI_MARIO_STATE_AIR_RIGHT;
+
+		}
+		else if (vx < 0) {
+			state = TANUKI_MARIO_STATE_AIR_LEFT;
+			return TANUKI_MARIO_STATE_AIR_LEFT;
+		}
+		if (state % 2 == 0) {
+			state = TANUKI_MARIO_STATE_AIR_LEFT;
+			return state;
+		}
+		else {
+			state = TANUKI_MARIO_STATE_AIR_RIGHT;
+			return state;
+		}
+
+	}
+
+
+	if (vx * ax < 0) {
+		if (vx > 0) {
+			return TANUKI_MARIO_STATE_BRAKE_RIGHT;
+
+		}
+		else {
+			return TANUKI_MARIO_STATE_BRAKE_LEFT;
+		}
+	}
+	if (abs(vx) > MARIO_MAX_VELOCITY_WALK) {
+		if (vx > 0) {
+			return TANUKI_MARIO_STATE_RUN_RIGHT;
+		}
+		else {
+			return TANUKI_MARIO_STATE_RUN_LEFT;
+		}
+	}
+	else {
+		if (vx > 0) {
+			return TANUKI_MARIO_STATE_WALK_RIGHT;
+		}
+		if (vx < 0) {
+			return TANUKI_MARIO_STATE_WALK_LEFT;
+		}
+		if (vx == 0.0f) {
+			if (state == SMALL_MARIO_STATE_IDLE_LEFT)
+				return TANUKI_MARIO_STATE_IDLE_LEFT;
+			if (state == SMALL_MARIO_STATE_IDLE_RIGHT)
+				return TANUKI_MARIO_STATE_IDLE_RIGHT;
+		}
+	}
+	return TANUKI_MARIO_STATE_AIR_LEFT;
 }
 
 void PlayableCharacter::Update(DWORD dt)
 {
+	if (state == MARIO_STATE_DIE) {
+		vx = 0;
+		ax = 0;
+	}
+	//TODO: if in attack state
+	// still update x and y but state not change.
+	
 	ay = GRAVITY;
 	float pre_vx = vx;
 	vy += ay;
@@ -171,7 +310,7 @@ void PlayableCharacter::Update(DWORD dt)
 	//}
 	if (abs(vx) > abs(maxVx)) vx = vx>0? maxVx: -maxVx;
 	//check collision
-	DebugOutTitle(L"%0.3f,%0.3f", this->x, this->y);
+	DebugOutTitle(L"%0.3f,%0.3f", this->vx, this->vy);
 	isOnPlatform = false;
 	
 	//Collistion::getInstance->process(this);
@@ -185,6 +324,8 @@ int PlayableCharacter::GetAnimationID(int i)
 int PlayableCharacter::getCorrectAnimation()
 {
 	//return SMALL_MARIO_STATE_IDLE_LEFT;
+	if (state == MARIO_STATE_DIE)
+		return 100;
 	switch (powerUpLevel) {
 	case 1:
 		return getAnimationBig();
@@ -201,6 +342,8 @@ int PlayableCharacter::getCorrectAnimation()
 
  void PlayableCharacter::walk(int dir) {
 
+	 if (state == MARIO_STATE_DIE)
+		 return;
 	 if (dir == LEFT) {
 		 this->_setState(SMALL_MARIO_STATE_WALK_LEFT);
 	 }
@@ -210,6 +353,8 @@ int PlayableCharacter::getCorrectAnimation()
  }
  void PlayableCharacter::run(int dir)
  {
+	 if (state == MARIO_STATE_DIE)
+		 return;
 	 if (dir == LEFT) {
 		 this->_setState(SMALL_MARIO_STATE_RUN_LEFT);
 	 }
@@ -223,7 +368,19 @@ int PlayableCharacter::getCorrectAnimation()
  {
 	 //change property + change state for rendering
 	 //checkground
-	 this->_setState(SMALL_MARIO_STATE_AIR);
+	 if (!canNormalJump) {
+		 return;
+	 }
+	 if (state == MARIO_STATE_DIE)
+		 return;
+	 if (state % 2 == 0) {
+		 this->_setState(SMALL_MARIO_STATE_AIR_LEFT);
+	 }
+	 else {
+		 this->_setState(SMALL_MARIO_STATE_AIR_RIGHT);
+	 }
+	 canNormalJump = false;
+	 
 	 
 	 
 	 //gravity;
@@ -232,12 +389,16 @@ int PlayableCharacter::getCorrectAnimation()
 
  void PlayableCharacter::releaseJump()
  {
+	 if (state == MARIO_STATE_DIE)
+		 return;
 	 if (vy>3.0f )vy = 3.0f;
 	 return;
  }
 
  void PlayableCharacter::slowDown()
  {
+	 if (state == MARIO_STATE_DIE)
+		 return;
 	 if (vx == 0.0f) { return; }
 	 if (vx > 0) {
 		 this->_setState(SMALL_MARIO_STATE_IDLE_RIGHT);
@@ -273,26 +434,49 @@ int PlayableCharacter::getCorrectAnimation()
  }
  void PlayableCharacter::onCollisionWith(CollisionEvent* e)
  {
-
+	 if (!isCollidable()) return;
 	 if (e->ny != 0 && e->des->isBlocking())
 	 {
-		 vy = 0;
+		 vy = 0.0f;
 		 isOnPlatform = true;
 		 canNormalJump = true;
 	 }
 	 else
 		 if (e->nx != 0 && e->des->isBlocking())
 		 {
-			 vx = 0;
+			 vx = 0.0f;
+			 ay = 0.0f;
 		 }
- }
+	 if (dynamic_cast<QuestionBlock*>(e->des)) {
+		 if (e->ny == -1.0f) {
+			 QuestionBlock* interact_with = dynamic_cast<QuestionBlock*>(e->des);
+			 interact_with->active();
+		 }
+	 }
+	 if (dynamic_cast<Goomba*>(e->des)) {
+		 Goomba* interact_with = dynamic_cast<Goomba*>(e->des);
+		 if (interact_with->isCollidable()) {
+			 if (e->ny >= 1.0f) {
+				 interact_with->dead();
+			 }
+			 else {
+				 this->dead();
+			 }
+		 }
+	 }
+}
  void PlayableCharacter::OnNoCollision()
  {
 	 x += vx;
 	 y += vy;
  }
+ void PlayableCharacter::dead()
+ {
+	 state = MARIO_STATE_DIE;
+ }
  void PlayableCharacter::_setState(int state) {
-	 if (state == MARIO_STATE_DIE) return;
+	 if (state == MARIO_STATE_DIE) 
+		 return;
 	 this->state = state;
 	 switch (state) {
 	 case SMALL_MARIO_STATE_RUN_RIGHT:
@@ -324,15 +508,14 @@ int PlayableCharacter::getCorrectAnimation()
 		 ax = -0.0f;
 		 vx = 0.0f;
 		 break;
-	 case SMALL_MARIO_STATE_AIR:
 	 case SMALL_MARIO_STATE_AIR_RIGHT:
 	 case SMALL_MARIO_STATE_AIR_LEFT:
-		 if (vx > MARIO_MAX_VELOCITY_WALK) {
-			 vy = 10.0f;
+		 if (abs(vx) > MARIO_MAX_VELOCITY_WALK) {
+			 vy = 20.0f;
 			 ay = GRAVITY;
 		}
 		 else {
-			 vy = 7.0f;
+			 vy = 18.0f;
 			 ay = GRAVITY;
 		 }
 			
@@ -354,6 +537,20 @@ int PlayableCharacter::getCorrectAnimation()
 		 vx = 0;
 		 ax = 0;
 		 break;*/
+ }
+
+ void PlayableCharacter::createAttackFire()
+ {
+	 LoadedResources* lr = LoadedResources::getInstance();
+	 //lr->Attack.push_back(new Fireball(x, y));
+ }
+
+ void PlayableCharacter::createAttackTanuki()
+ {
+	 LoadedResources* lr = LoadedResources::getInstance();
+	 //lr->Attack.push_back(new tailwhip(x, y));
+	 //state = TANUKI_ATTACK_STATE;
+	 
  }
  
  void PlayableCharacter::AddAnimation(int id)

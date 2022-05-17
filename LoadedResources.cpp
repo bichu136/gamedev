@@ -5,7 +5,7 @@
 #include "GlobalDefine.h"
 #include "debug.h"
 
-#define BLOCK_PUSH_FACTOR 1.0f
+#define BLOCK_PUSH_FACTOR 1.50f
 LoadedResources* LoadedResources::__instance = NULL;
 void LoadedResources::_SweptAABB(float ml, float mt, float mr, float mb, float dx, float dy, float sl, float st, float sr, float sb, float& t, float& nx, float& ny)
 {
@@ -113,7 +113,9 @@ CollisionEvent* LoadedResources::SweptAABB(GameObject* objSrc, DWORD dt, GameObj
 	float dvx = mdx - sdx;
 	float dvy = mdy - sdy;
 	objSrc->GetBoundingBox(ml, mt, mr, mb);
+	
 	objDest->GetBoundingBox(sl, st, sr, sb);
+	//DebugOutTitle(L"something: %0.5f,%0.5f",mb,mt);
 	_SweptAABB(
 		ml, mt, mr, mb, dvx, dvy, sl, st, sr, sb, t, nx, ny);
 	return new CollisionEvent(t, nx, ny, dvx, dvy, objDest, objSrc);
@@ -150,7 +152,7 @@ void LoadedResources::Filter(GameObject* objSrc,
 		//if (c->isDeleted) continue;
 		//if (c->obj->IsDeleted()) continue;
 		//// ignore collision event with object having IsBlocking = 0 (like coin, mushroom, etc)
-		if (filterBlock == 1 && !c->srcObject->isBlocking())
+		if (filterBlock == 1 && !c->des->isBlocking())
 		{
 			continue;
 		}
@@ -299,6 +301,121 @@ void LoadedResources::createMarioAnimation()
 {
 	createSmallMarioAnimation();
 	createBigMarioAnimation();
+	createFireMarioAnimation();
+	createTanukiMarioAnimation();
+}
+void LoadedResources::createFireMarioAnimation()
+{
+	AnimationManage* am = AnimationManage::getInstance();
+	Animation* pAni;
+	//idle face left
+	pAni = new Animation(100);
+	pAni->Add(11107, 5);
+	am->Add(FIRE_MARIO_STATE_IDLE_LEFT, pAni);
+	//idle face right
+	pAni = new Animation(100);
+	pAni->Add(11109, 5);
+	am->Add(FIRE_MARIO_STATE_IDLE_RIGHT, pAni);
+
+	//walk face left
+	pAni = new Animation(100);
+	pAni->Add(11105, 5);
+	pAni->Add(11107, 5);
+	am->Add(FIRE_MARIO_STATE_WALK_LEFT, pAni);
+
+	//walk face right
+	pAni = new Animation(100);
+	pAni->Add(11111, 5);
+	pAni->Add(11109, 5);
+	am->Add(FIRE_MARIO_STATE_WALK_RIGHT, pAni);
+
+	//normal jump face left
+	pAni = new Animation(100);
+	pAni->Add(11402, 5);
+	am->Add(FIRE_MARIO_STATE_AIR_LEFT, pAni);
+
+	//normal jump face right
+	pAni = new Animation(100);
+	pAni->Add(11414, 5);
+	am->Add(FIRE_MARIO_STATE_AIR_RIGHT, pAni);
+
+	//p speed face left
+	pAni = new Animation(100);
+	pAni->Add(11102, 5);
+	pAni->Add(11103, 5);
+	pAni->Add(11104, 5);
+	am->Add(FIRE_MARIO_STATE_RUN_LEFT, pAni);
+	//p speed face right
+	pAni = new Animation(100);
+	pAni->Add(11113, 3);
+	pAni->Add(11112, 3);
+	pAni->Add(11114, 3);
+	am->Add(FIRE_MARIO_STATE_RUN_RIGHT, pAni);
+	//break left
+	pAni = new Animation(100);
+	pAni->Add(11115, 3);
+	am->Add(FIRE_MARIO_STATE_BRAKE_LEFT, pAni);
+	//break right
+	pAni = new Animation(100);
+	pAni->Add(11101, 3);
+	am->Add(FIRE_MARIO_STATE_BRAKE_RIGHT, pAni);
+	
+}
+void LoadedResources::createTanukiMarioAnimation()
+{
+	AnimationManage* am = AnimationManage::getInstance();
+	Animation* pAni;
+	//idle face left
+	pAni = new Animation(100);
+	pAni->Add(11707, 5);
+	am->Add(TANUKI_MARIO_STATE_IDLE_LEFT, pAni);
+	//idle face right
+	pAni = new Animation(100);
+	pAni->Add(11709, 5);
+	am->Add(TANUKI_MARIO_STATE_IDLE_RIGHT, pAni);
+
+	//walk face left
+	pAni = new Animation(100);
+	pAni->Add(11705, 5);
+	pAni->Add(11707, 5);
+	am->Add(TANUKI_MARIO_STATE_WALK_LEFT, pAni);
+
+	//walk face right
+	pAni = new Animation(100);
+	pAni->Add(11711, 5);
+	pAni->Add(11709, 5);
+	am->Add(TANUKI_MARIO_STATE_WALK_RIGHT, pAni);
+
+	//normal jump face left
+	pAni = new Animation(100);
+	pAni->Add(12002, 5);
+	am->Add(TANUKI_MARIO_STATE_AIR_LEFT, pAni);
+
+	//normal jump face right
+	pAni = new Animation(100);
+	pAni->Add(12014, 5);
+	am->Add(TANUKI_MARIO_STATE_AIR_RIGHT, pAni);
+
+	//p speed face left
+	pAni = new Animation(100);
+	pAni->Add(11702, 5);
+	pAni->Add(11703, 5);
+	pAni->Add(11704, 5);
+	am->Add(TANUKI_MARIO_STATE_RUN_LEFT, pAni);
+	//p speed face right
+	pAni = new Animation(100);
+	pAni->Add(11713, 3);
+	pAni->Add(11712, 3);
+	pAni->Add(11714, 3);
+	am->Add(TANUKI_MARIO_STATE_RUN_RIGHT, pAni);
+	//break left
+	pAni = new Animation(100);
+	pAni->Add(11715, 3);
+	am->Add(TANUKI_MARIO_STATE_BRAKE_LEFT, pAni);
+	//break right
+	pAni = new Animation(100);
+	pAni->Add(11701, 3);
+	am->Add(TANUKI_MARIO_STATE_BRAKE_RIGHT, pAni);
 }
 void LoadedResources::createSmallMarioAnimation()
 {
@@ -438,6 +555,17 @@ void LoadedResources::LoadResources()
 	sm->Add(2104, 354, 135, 369, 150, tm->getTextureWithId(2));
 	sm->Add(2105, 372, 135, 387, 150, tm->getTextureWithId(2));
 
+	//goomba sprite
+	sm->Add(4101, 5, 14, 21, 30, tm->getTextureWithId(1));
+	sm->Add(4102, 25, 14, 41, 30, tm->getTextureWithId(1));
+	sm->Add(4103, 45, 14, 61, 30, tm->getTextureWithId(1));
+	Animation* goomBaWallkAnimation = new Animation(100);
+	goomBaWallkAnimation->Add(4101,3);
+	goomBaWallkAnimation->Add(4102, 3);
+	am->Add(4001, goomBaWallkAnimation);
+	goomBaWallkAnimation = new Animation(100);
+	goomBaWallkAnimation->Add(4103, 3);
+	am->Add(4009, goomBaWallkAnimation);
 	// tile
 	for (int i = 0; i < 42; i++) {
 		for (int j = 0; j < 42; j++) {
@@ -457,10 +585,23 @@ void LoadedResources::LoadResources()
 	pBrickAnimation->Add(2104, 3);
 	pBrickAnimation->Add(2105, 3);
 	am->Add(2001, pBrickAnimation);
-
-
-	Mario = new PlayableCharacter(20.f,200.0f);
 	
+
+	//create question block animation;
+	Animation* questionBlockAni = new Animation(100);
+	questionBlockAni->Add(30611, 7);
+	questionBlockAni->Add(30612, 3);
+	questionBlockAni->Add(30613, 3);
+	questionBlockAni->Add(30614, 3);
+	am->Add(3001, questionBlockAni);
+	//create disabled block ani
+	Animation* DisableBlockAni = new Animation(100);
+	DisableBlockAni->Add(30815, 7);
+	am->Add(3099, DisableBlockAni);
+
+
+	
+	Mario = new PlayableCharacter(20.0f,400.0f);
 	/*Mario->AddAnimation(100);
 	Mario->AddAnimation(101);
 	Mario->AddAnimation(102);
@@ -469,7 +610,21 @@ void LoadedResources::LoadResources()
 	Mario->AddAnimation(105);
 	Mario->AddAnimation(106);
 	Mario->AddAnimation(107);*/
-	stage_blocks.push_back(new WoodenFloor(40.0f, 40.0f, 39, 2));
+	stage_blocks.push_back(new WoodenFloor(BRICK_WIDTH*SCALE_WIDTH/2.0f,(BRICK_HEIGHT*SCALE_HEIGHT)/2.0f , 39, 2));
+	stage_blocks.push_back(new WoodenFloor((BRICK_WIDTH * SCALE_WIDTH / 2.0f)+39* BRICK_WIDTH * SCALE_WIDTH, (BRICK_HEIGHT * SCALE_HEIGHT) / 2.0f, 29, 3));
+	stage_blocks.push_back(new QuestionBlock((BRICK_WIDTH * SCALE_WIDTH / 2.0f)  + 11* BRICK_WIDTH * SCALE_WIDTH, (BRICK_HEIGHT * SCALE_HEIGHT) / 2.0f + 5*BRICK_HEIGHT*SCALE_HEIGHT));
+	stage_blocks.push_back(new QuestionBlock((BRICK_WIDTH * SCALE_WIDTH / 2.0f) + 12 * BRICK_WIDTH * SCALE_WIDTH, (BRICK_HEIGHT * SCALE_HEIGHT) / 2.0f + 5 * BRICK_HEIGHT * SCALE_HEIGHT));
+	
+	stage_blocks.push_back(new QuestionBlock((BRICK_WIDTH * SCALE_WIDTH / 2.0f) + 14 * BRICK_WIDTH * SCALE_WIDTH, (BRICK_HEIGHT * SCALE_HEIGHT) / 2.0f + 7 * BRICK_HEIGHT * SCALE_HEIGHT));
+	stage_blocks.push_back(new QuestionBlock((BRICK_WIDTH * SCALE_WIDTH / 2.0f) + 15 * BRICK_WIDTH * SCALE_WIDTH, (BRICK_HEIGHT * SCALE_HEIGHT) / 2.0f + 7 * BRICK_HEIGHT * SCALE_HEIGHT));
+
+
+	stage_blocks.push_back(new Pipe(
+		(BRICK_WIDTH * SCALE_WIDTH / 2.0f) + 21 * BRICK_WIDTH * SCALE_WIDTH, //x
+		(BRICK_HEIGHT * SCALE_HEIGHT) / 2.0f + 2 * BRICK_HEIGHT * SCALE_HEIGHT,//y
+		1,
+		3));
+	enemies.push_back(new Goomba(100.0f, 400.0f));
 	/*for (int i = 0; i < 20; i++){
 		stage_blocks.push_back(new Platform(SCALE_WIDTH*BRICK_WIDTH*(i)+20.0f, SCALE_HEIGHT*BRICK_HEIGHT/2));
 		stage_blocks[i]->AddAnimation(2001);
@@ -482,7 +637,42 @@ void LoadedResources::LoadResources()
 
 void LoadedResources::Update(DWORD dt)
 {
+	playableCollision = false;
+	int e_l = enemies.size();
+	for (auto it = enemies.begin(); it != enemies.end() && enemies.size() > 0; it++) {
+		if ((*it)->is_delete) {
+			auto p_it = it;
+			if (it != enemies.begin())
+				p_it--;
+			GameObject* t = (* it);
+			delete t;
+			enemies.erase(it);
+			if (enemies.size() == 0)
+				break;
+			if (it != enemies.begin())
+				it = p_it;
+			continue;
+		}
+		(*it)->Update(dt);
+	}
+	for (int i = 0; i < stage_blocks.size(); i++) {
+		stage_blocks[i]->Update(dt);
+	}
+	for (int i = 0; i < Attack.size(); i++) {
+		Attack[i]->Update(dt);
+	}
 	Mario->Update(dt);
+
+	checCollisionMarioToStageBlocks(dt);
+	for (int i = 0; i < enemies.size(); i++) {
+		checkCollisionEnemiesToStageBlocks(dt,enemies[i]);
+	}
+	checCollisionMarioToEnemies(dt);
+
+
+}
+void LoadedResources::checCollisionMarioToEnemies(DWORD dt) {
+
 	//world stuff
 	// -  collsion check between varies gameobjects.
 	// - moving gameobject according to their speed.
@@ -493,22 +683,27 @@ void LoadedResources::Update(DWORD dt)
 	collisionEvents.clear();
 	// check for everything 
 	if (Mario->isCollidable()) {
-		Scan(Mario, dt, &stage_blocks, collisionEvents);
+		Scan(Mario, dt, &enemies, collisionEvents);
 	}
 	//no colision
 	if (collisionEvents.size() == 0) {
-		Mario->OnNoCollision();
+		if (playableCollision) {
+
+		}
+		else {
+			Mario->OnNoCollision();
+			playableCollision = true;
+		}
 	}
 	else {
 		//get who have collision first in X axis and Y axis
+		Filter(Mario, collisionEvents, colX, colY,0,1,1);
 
-		Filter(Mario, collisionEvents, colX, colY);
-		
 		float x, y, vx, vy, dx, dy;
 		Mario->GetPosition(x, y);
 		Mario->GetSpeed(vx, vy);
-		dx = vx ;
-		dy = vy ;
+		dx = vx;
+	    dy = vy;
 
 		if (colX != NULL && colY != NULL)
 		{
@@ -537,7 +732,7 @@ void LoadedResources::Update(DWORD dt)
 
 				if (colX_other != NULL)
 				{
-					
+
 					if (colX_other->t < 0) {
 					}
 					else {
@@ -545,7 +740,7 @@ void LoadedResources::Update(DWORD dt)
 						SweptAABB(Mario, dt, colX_other->des);
 						Mario->onCollisionWith(colX_other);
 					}
-					
+
 				}
 				else
 				{
@@ -579,7 +774,7 @@ void LoadedResources::Update(DWORD dt)
 				if (colY_other != NULL)
 				{
 					y += colY_other->t * dy + colY_other->ny * BLOCK_PUSH_FACTOR;
-				    Mario->onCollisionWith(colY_other);
+					Mario->onCollisionWith(colY_other);
 				}
 				else
 				{
@@ -606,10 +801,10 @@ void LoadedResources::Update(DWORD dt)
 					x += dx;
 					y += dy;
 				}
-		
+
 		Mario->SetPosition(x, y);
 	}
-	
+
 
 	////
 	//// Scan all non-blocking collisions for further collision logic
@@ -625,6 +820,302 @@ void LoadedResources::Update(DWORD dt)
 
 
 	for (UINT i = 0; i < collisionEvents.size(); i++) delete collisionEvents[i];
+}
+void LoadedResources::checCollisionMarioToStageBlocks(DWORD dt) {
+
+	//world stuff
+	// -  collsion check between varies gameobjects.
+	// - moving gameobject according to their speed.
+	std::vector<CollisionEvent* > collisionEvents;
+	//std::vector<CollisionEvent*> &coEvents
+	CollisionEvent* colX = NULL;
+	CollisionEvent* colY = NULL;
+	collisionEvents.clear();
+	// check for everything 
+	if (Mario->isCollidable()) {
+		Scan(Mario, dt, &stage_blocks, collisionEvents);
+	}
+	//no colision
+	if (collisionEvents.size() == 0) {
+		if (playableCollision) {
+
+		}
+		else {
+			Mario->OnNoCollision();
+			playableCollision = true;
+		}
+	}
+	else {
+		//get who have collision first in X axis and Y axis
+
+		Filter(Mario, collisionEvents, colX, colY);
+
+		float x, y, vx, vy, dx, dy;
+		Mario->GetPosition(x, y);
+		Mario->GetSpeed(vx, vy);
+		dx = vx;
+		dy = vy;
+
+		if (colX != NULL && colY != NULL)
+		{
+			if (colY->t < colX->t)	// was collision on Y first ?
+			{
+				y += colY->t * dy + colY->ny * BLOCK_PUSH_FACTOR;
+				Mario->SetPosition(x, y);
+
+				Mario->onCollisionWith(colY);
+
+				//
+				// see if after correction on Y, is there still a collision on X ? 
+				//
+				CollisionEvent* colX_other = NULL;
+
+				//
+				// check again if there is true collision on X 
+				//
+				colX->isDeleted = true;		// remove current collision event on X
+
+				// replace with a new collision event using corrected location 
+				collisionEvents.push_back(SweptAABB(Mario, dt, colX->des));
+
+				// re-filter on X only
+				Filter(Mario, collisionEvents, colX_other, colY, /*filterBlock = */ 1, 1, /*filterY=*/0);
+
+				if (colX_other != NULL)
+				{
+
+					if (colX_other->t < 0) {
+					}
+					else {
+						x += colX_other->t * dx + colX_other->nx * BLOCK_PUSH_FACTOR;
+						SweptAABB(Mario, dt, colX_other->des);
+						Mario->onCollisionWith(colX_other);
+					}
+
+				}
+				else
+				{
+					x += dx;
+				}
+			}
+			else // collision on X first
+			{
+				x += colX->t * dx + colX->nx * BLOCK_PUSH_FACTOR;
+				SweptAABB(Mario, dt, colX->des);
+				Mario->SetPosition(x, y);
+
+				Mario->onCollisionWith(colX);
+
+				//
+				// see if after correction on X, is there still a collision on Y ? 
+				//
+				CollisionEvent* colY_other = NULL;
+
+				//
+				// check again if there is true collision on Y
+				//
+				colY->isDeleted = true;		// remove current collision event on Y
+
+				// replace with a new collision event using corrected location 
+				collisionEvents.push_back(SweptAABB(Mario, dt, colY->des));
+
+				// re-filter on Y only
+				Filter(Mario, collisionEvents, colX, colY_other, /*filterBlock = */ 1, /*filterX=*/0, /*filterY=*/1);
+
+				if (colY_other != NULL)
+				{
+					y += colY_other->t * dy + colY_other->ny * BLOCK_PUSH_FACTOR;
+					Mario->onCollisionWith(colY_other);
+				}
+				else
+				{
+					y += dy;
+				}
+			}
+		}
+		else
+			if (colX != NULL)
+			{
+				x += colX->t * dx + colX->nx * BLOCK_PUSH_FACTOR;
+				y += dy;
+				Mario->onCollisionWith(colX);
+			}
+			else
+				if (colY != NULL)
+				{
+					x += dx;
+					y += colY->t * dy + colY->ny * BLOCK_PUSH_FACTOR;
+					Mario->onCollisionWith(colY);
+				}
+				else // both colX & colY are NULL 
+				{
+					x += dx;
+					y += dy;
+				}
+
+		Mario->SetPosition(x, y);
+	}
 
 
+	////
+	//// Scan all non-blocking collisions for further collision logic
+	////
+	//for (UINT i = 0; i < coEvents.size(); i++)
+	//{
+	//	LPCOLLISIONEVENT e = coEvents[i];
+	//	if (e->isDeleted) continue;
+	//	if (e->obj->IsBlocking()) continue;  // blocking collisions were handled already, skip them
+
+	//	objSrc->OnCollisionWith(e);
+	//}
+
+
+	for (UINT i = 0; i < collisionEvents.size(); i++) delete collisionEvents[i];
+}
+
+void LoadedResources::checkCollisionEnemiesToStageBlocks(DWORD dt, GameObject* enemy)
+{
+	//world stuff
+	// -  collsion check between varies gameobjects.
+	// - moving gameobject according to their speed.
+	Goomba* enemies =  dynamic_cast<Goomba*>(enemy);
+	std::vector<CollisionEvent* > collisionEvents;
+	//std::vector<CollisionEvent*> &coEvents
+	CollisionEvent* colX = NULL;
+	CollisionEvent* colY = NULL;
+	collisionEvents.clear();
+	// check for everything 
+	if (enemies->isCollidable()) {
+		Scan(enemies, dt, &stage_blocks, collisionEvents);
+	}
+	//no colision
+	if (collisionEvents.size() == 0) {
+		enemies->OnNoCollision();
+	}
+	else {
+		//get who have collision first in X axis and Y axis
+
+		Filter(enemies, collisionEvents, colX, colY);
+
+		float x, y, vx, vy, dx, dy;
+		enemies->GetPosition(x, y);
+		enemies->GetSpeed(vx, vy);
+		dx = vx;
+		dy = vy;
+
+		if (colX != NULL && colY != NULL)
+		{
+			if (colY->t < colX->t)	// was collision on Y first ?
+			{
+				y += colY->t * dy + colY->ny * BLOCK_PUSH_FACTOR;
+				enemies->SetPosition(x, y);
+
+				enemies->onCollisionWith(colY);
+
+				//
+				// see if after correction on Y, is there still a collision on X ? 
+				//
+				CollisionEvent* colX_other = NULL;
+
+				//
+				// check again if there is true collision on X 
+				//
+				colX->isDeleted = true;		// remove current collision event on X
+
+				// replace with a new collision event using corrected location 
+				collisionEvents.push_back(SweptAABB(enemies, dt, colX->des));
+
+				// re-filter on X only
+				Filter(enemies, collisionEvents, colX_other, colY, /*filterBlock = */ 1, 1, /*filterY=*/0);
+
+				if (colX_other != NULL)
+				{
+
+					if (colX_other->t < 0) {
+					}
+					else {
+						x += colX_other->t * dx + colX_other->nx * BLOCK_PUSH_FACTOR;
+						SweptAABB(enemies, dt, colX_other->des);
+						enemies->onCollisionWith(colX_other);
+					}
+
+				}
+				else
+				{
+					x += dx;
+				}
+			}
+			else // collision on X first
+			{
+				x += colX->t * dx + colX->nx * BLOCK_PUSH_FACTOR;
+				SweptAABB(enemies, dt, colX->des);
+				enemies->SetPosition(x, y);
+
+				enemies->onCollisionWith(colX);
+
+				//
+				// see if after correction on X, is there still a collision on Y ? 
+				//
+				CollisionEvent* colY_other = NULL;
+
+				//
+				// check again if there is true collision on Y
+				//
+				colY->isDeleted = true;		// remove current collision event on Y
+
+				// replace with a new collision event using corrected location 
+				collisionEvents.push_back(SweptAABB(enemies, dt, colY->des));
+
+				// re-filter on Y only
+				Filter(enemies, collisionEvents, colX, colY_other, /*filterBlock = */ 1, /*filterX=*/0, /*filterY=*/1);
+
+				if (colY_other != NULL)
+				{
+					y += colY_other->t * dy + colY_other->ny * BLOCK_PUSH_FACTOR;
+					enemies->onCollisionWith(colY_other);
+				}
+				else
+				{
+					y += dy;
+				}
+			}
+		}
+		else
+			if (colX != NULL)
+			{
+				x += colX->t * dx + colX->nx * BLOCK_PUSH_FACTOR;
+				y += dy;
+				enemies->onCollisionWith(colX);
+			}
+			else
+				if (colY != NULL)
+				{
+					x += dx;
+					y += colY->t * dy + colY->ny * BLOCK_PUSH_FACTOR;
+					enemies->onCollisionWith(colY);
+				}
+				else // both colX & colY are NULL 
+				{
+					x += dx;
+					y += dy;
+				}
+
+		enemies->SetPosition(x, y);
+	}
+
+
+	////
+	//// Scan all non-blocking collisions for further collision logic
+	////
+	//for (UINT i = 0; i < coEvents.size(); i++)
+	//{
+	//	LPCOLLISIONEVENT e = coEvents[i];
+	//	if (e->isDeleted) continue;
+	//	if (e->obj->IsBlocking()) continue;  // blocking collisions were handled already, skip them
+
+	//	objSrc->OnCollisionWith(e);
+	//}
+
+
+	for (UINT i = 0; i < collisionEvents.size(); i++) delete collisionEvents[i];
 }

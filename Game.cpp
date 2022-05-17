@@ -99,8 +99,20 @@ for (DWORD i = 0; i < dwElements; i++)
 
 this->Update(dt);
 
+for (int i = 0; i < lr->enemies.size(); i++) {
+	drawObject(lr->enemies[i]);
+
+}
 for (int i = 0; i < lr->stage_blocks.size(); i++) {
-	drawObject(lr->stage_blocks[i]);
+	if (i== lr->stage_blocks.size()-1)
+		drawObject(lr->stage_blocks[i]);
+	else
+		drawObject(lr->stage_blocks[i]);
+
+}
+for (int i = 0; i < lr->Attack.size(); i++) {
+	drawObject(lr->Attack[i]);
+
 }
 drawObject(lr->Mario);
 spriteObject->End();
@@ -171,6 +183,9 @@ void Game::InitKeyboard()
 void Game::drawWoondenFloor(GameObject* _in)
 {
 	WoodenFloor* object = dynamic_cast<WoodenFloor*>(_in);
+	if (dynamic_cast<Pipe*>(object)) {
+		object = dynamic_cast<Pipe*>(object);
+	}
 	int width, height, spriteID;
 	float x, y;
 	object->getSize(width, height);
@@ -188,7 +203,8 @@ void Game::drawSprite(float x, float y, Sprite* sprite)
 {
 	float x_cord = x;
 	float y_cord = (y);
-	D3DXMatrixTranslation(&matTranslation, x_cord, y_cord , 1.0f);
+	
+	D3DXMatrixTranslation(&matTranslation, x_cord-this->cam_x, y_cord-this->cam_y , 1.0f);
 	D3DX10_SPRITE d3dxSprite = sprite->sprite;
 	d3dxSprite.matWorld = ((sprite->getMatrixScaling()) * matTranslation);
 	//MIGHT CAUSE BUG
@@ -199,7 +215,10 @@ void Game::drawObject(GameObject* object)
 	float x = object->GetX();
 	float y = object->GetY();
 	AnimationManage* am = AnimationManage::getInstance();
-	if (dynamic_cast<PlayableCharacter*>(object)){
+	if (dynamic_cast<WoodenFloor*>(object)) {
+		drawWoondenFloor(object);
+	}else 
+	{
 		int aniID = object->getCorrectAnimation();
 		Animation* ani = am->Get(aniID);
 		int spriteID = ani->getCorrectSpriteID();
@@ -207,9 +226,7 @@ void Game::drawObject(GameObject* object)
 		Sprite* pSprite = sm->Get(spriteID);
 		drawSprite(x, y, pSprite);
 	}
-	if (dynamic_cast<WoodenFloor*>(object)) {
-			drawWoondenFloor(object);
-	}
+	
 			
 
 }
@@ -223,6 +240,15 @@ void Game::Update(DWORD dt)
 	LoadedResources* lr = LoadedResources::getInstance();
 	//update state of object.
 	lr->Update(dt);
+	float cx, cy;
+	lr->Mario->GetPosition(cx, cy);
+
+	cx -= SCREEN_WIDTH / 2;
+	cy -= SCREEN_HEIGHT / 2;
+
+	if (cx < 0) cx = 0;
+	if (cy < 0) cy = 0;
+	setCamPos(cx, cy);
 }
 void Render() {
 	//draw all the correctly choose sprite from loaded resource instance;

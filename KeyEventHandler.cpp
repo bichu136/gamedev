@@ -53,6 +53,8 @@ void KeyEventHandler::OnKeyDown(int KeyCode, PlayableCharacter* player)
 	case DIK_S:
 		player->jump();
 		break;
+	case DIK_A:
+		player->tryToAttack();
 	case DIK_7:
 		player->setPowerUplevel(SMALL);
 		break;

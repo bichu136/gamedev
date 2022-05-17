@@ -17,6 +17,8 @@
 class Game
 {
 private:
+    float cam_x;
+    float cam_y;
     static Game* __instance;
     int backBufferWidth = 0;					// Backbuffer width & height, will be set during Direct3D initialization
     int backBufferHeight = 0;
@@ -74,6 +76,14 @@ public:
     void drawObject(GameObject* object);
     void LoadResources();
     void Update(DWORD dt);
+    void getCamPos(float& x, float& y) {
+        x = cam_x;
+        y = cam_y;
+    }
+    void setCamPos(float &x, float &y) {
+        cam_x = x;
+        cam_y = y;
+    }
     void drawPlatform(GameObject* object);
 };
 

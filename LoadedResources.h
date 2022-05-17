@@ -2,6 +2,9 @@
 #include"PlayableCharacter.h"
 #include"Platform.h"
 #include"WoodenFloor.h"
+#include"Pipe.h"
+#include"Goomba.h"
+#include"QuestionBlock.h"
 #include"SpriteManage.h"
 #include"TextureManager.h"
 #include"AnimationManage.h"
@@ -45,13 +48,21 @@ private:
 		int filterY = 1);
 	void loadMarioSprite();
 	void createMarioAnimation();
+	void createFireMarioAnimation();
+	void createTanukiMarioAnimation();
 	void createSmallMarioAnimation();
 	void createBigMarioAnimation();
 public:
 	PlayableCharacter* Mario;
 	std::vector<GameObject*> stage_blocks;
+	std::vector<GameObject*> enemies;
+	std::vector<GameObject*> Attack;
+	bool playableCollision;
 	static LoadedResources* getInstance();
+	void checCollisionMarioToStageBlocks(DWORD dt);
+	void checkCollisionEnemiesToStageBlocks(DWORD dt, GameObject* enemies);
 	void LoadResources();
 	void Update(DWORD dt);
+	void checCollisionMarioToEnemies(DWORD dt);
 };
 

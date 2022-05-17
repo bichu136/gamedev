@@ -18,7 +18,7 @@ protected:
 	bool isDeleted;
 
 public:
-	
+	bool is_delete;
 	std::vector<int> animationIDList;
 	GameObject(float x, float y) {
 		this->x = x; this->y = y; 
