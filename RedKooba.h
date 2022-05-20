@@ -1,8 +1,7 @@
 #pragma once
 #include "GameObject.h"
-#include"CollisionEvent.h"
-#include"Box.h"
-class Goomba :
+#include "CollisionEvent.h"
+class RedKooba :
     public GameObject
 {
 private:
@@ -11,9 +10,21 @@ private:
 	bool isOnPlatform;
 	float vx;
 	float vy;
+	int state;
+	bool not_fall;
 public:
-	Goomba(float x, float y);
+	RedKooba(float x, float y);
 	void Update(DWORD dt);
+	void roll(float dir) {
+		state = 2;
+		not_fall = false;
+		if (dir >= 0) {
+			vx = -7.0f;
+		}
+		else {
+			vx = 7.0f;
+		}
+	}
 	bool isBlocking() { return false; }
 	int GetAnimationID(int i);
 	void AddAnimation(int id);
@@ -23,8 +34,9 @@ public:
 	void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 	void dead();
 	void onCollisionWith(CollisionEvent* e, bool is_double_collision);
-	void onCollisionWith(CollisionEvent* e);
+	//void onCollisionWith(CollisionEvent* e);
+	int getState() { return state; }
 	void OnNoCollision();
-	
+
 };
 

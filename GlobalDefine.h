@@ -23,7 +23,7 @@
 #define MARIO_TEX TEXTURE_DIR "\\mario.png"
 #define ENEMY_TEX TEXTURE_DIR "\\enemies.png"
 #define MISC_TEX TEXTURE_DIR "\\misc.png"
-#define TILE_TEX TEXTURE_DIR "\\tiles_trans.png"
+#define TILE_TEX TEXTURE_DIR "\\tiles_trans1.png"
 
 #define LEFT  0
 #define RIGHT 1
@@ -80,11 +80,11 @@
 
 #define SMALL 0
 #define BIG 1
-#define FIRE 2
-#define TANUKI 3
+#define FIRE 3
+#define TANUKI 2
 
-#define SMALL_MARIO_WIDTH 16.0f
-#define SMALL_MARIO_HEIGHT 16.0f
+#define SMALL_MARIO_WIDTH 15.0f
+#define SMALL_MARIO_HEIGHT 15.0f
 #define BIG_MARIO_WIDTH 16.0f
 #define BIG_MARIO_HEIGHT 32.0f
 #define BRICK_WIDTH 16.0f
@@ -99,3 +99,45 @@
 #define WOODEN_FLOOR_SPRITE_1 -1
 #define WOODEN_FLOOR_SPRITE_3 -1
 #define WOODEN_FLOOR_SPRITE_5 30818
+
+#define BOX_1_SPRITE_8 30118
+#define BOX_1_SPRITE_4 30217
+#define BOX_1_SPRITE_2 30318
+#define BOX_1_SPRITE_6 30219
+#define BOX_1_SPRITE_7 30117
+#define BOX_1_SPRITE_9 30119
+#define BOX_1_SPRITE_1 30317
+#define BOX_1_SPRITE_3 30319
+#define BOX_1_SPRITE_5 30218
+
+
+#define BOX_2_SPRITE_8 30121+1
+#define BOX_2_SPRITE_4 30220+1
+#define BOX_2_SPRITE_2 30321+1
+#define BOX_2_SPRITE_6 30222+1
+#define BOX_2_SPRITE_7 30120+1
+#define BOX_2_SPRITE_9 30122+1
+#define BOX_2_SPRITE_1 30320+1
+#define BOX_2_SPRITE_3 30322+1
+#define BOX_2_SPRITE_5 30221+1
+
+
+#define BOX_3_SPRITE_8 30418
+#define BOX_3_SPRITE_4 30517
+#define BOX_3_SPRITE_2 30618
+#define BOX_3_SPRITE_6 30519
+#define BOX_3_SPRITE_7 30417
+#define BOX_3_SPRITE_9 30419
+#define BOX_3_SPRITE_1 30617
+#define BOX_3_SPRITE_3 30619
+#define BOX_3_SPRITE_5 30518
+
+#define BOX_4_SPRITE_8 30422
+#define BOX_4_SPRITE_4 30521
+#define BOX_4_SPRITE_2 30622
+#define BOX_4_SPRITE_6 30523
+#define BOX_4_SPRITE_7 30421
+#define BOX_4_SPRITE_9 30423
+#define BOX_4_SPRITE_1 30621
+#define BOX_4_SPRITE_3 30623
+#define BOX_4_SPRITE_5 30522

@@ -148,6 +148,7 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="AnimationFrame.h" />
     <ClInclude Include="AnimationManage.h" />
+    <ClInclude Include="Box.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="CollisionEvent.h" />
     <ClInclude Include="debug.h" />
@@ -164,6 +165,7 @@
     <ClInclude Include="Platform.h" />
     <ClInclude Include="PlayableCharacter.h" />
     <ClInclude Include="QuestionBlock.h" />
+    <ClInclude Include="RedKooba.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteManage.h" />
     <ClInclude Include="Texture.h" />
@@ -174,6 +176,7 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AnimationFrame.cpp" />
     <ClCompile Include="AnimationManage.cpp" />
+    <ClCompile Include="Box.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="CollisionEvent.cpp" />
     <ClCompile Include="debug.cpp" />
@@ -192,6 +195,7 @@
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="PlayableCharacter.cpp" />
     <ClCompile Include="QuestionBlock.cpp" />
+    <ClCompile Include="RedKooba.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteManage.cpp" />

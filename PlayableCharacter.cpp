@@ -4,7 +4,9 @@
 #include "WoodenFloor.h"
 #include "debug.h"
 #include "Goomba.h"
+#include "RedKooba.h"
 #include "LoadedResources.h"
+#include "Box.h"
 #define MARIO_MAX_VELOCITY_WALK 6.0f
 #define MARIO_MAX_VELOCITY_RUN 14.0f
 #define MARIO_ACCELARATION_WALK 0.5f
@@ -12,9 +14,8 @@
 #define GRAVITY -0.6f
 void PlayableCharacter::tryToAttack()
 {
-	LoadedResources* lr = LoadedResources::getInstance();
+	//LoadedResources* lr = LoadedResources::getInstance();
 	switch (powerUpLevel) {
-	
 	case 2:
 		createAttackFire();
 		break;
@@ -25,6 +26,7 @@ void PlayableCharacter::tryToAttack()
 	case 1:
 		break;
 	}
+	DebugOutTitle(L"%d", powerUpLevel);
 }
 PlayableCharacter::PlayableCharacter(float x, float y):GameObject(x,y)
 {
@@ -32,7 +34,7 @@ PlayableCharacter::PlayableCharacter(float x, float y):GameObject(x,y)
 	vy = 0.0f;
 	ax = 0.0f;
 	ay = GRAVITY;
-	canNormalJump = false;
+	canNormalJump = true;
 	state = SMALL_MARIO_STATE_IDLE_LEFT;
 	powerUpLevel = 0;
 }
@@ -294,10 +296,12 @@ void PlayableCharacter::Update(DWORD dt)
 	if (state == MARIO_STATE_DIE) {
 		vx = 0;
 		ax = 0;
+		vy = 0;
+		ay = 0;
 	}
 	//TODO: if in attack state
 	// still update x and y but state not change.
-	
+	//canNormalJump = false;
 	ay = GRAVITY;
 	float pre_vx = vx;
 	vy += ay;
@@ -310,7 +314,8 @@ void PlayableCharacter::Update(DWORD dt)
 	//}
 	if (abs(vx) > abs(maxVx)) vx = vx>0? maxVx: -maxVx;
 	//check collision
-	DebugOutTitle(L"%0.3f,%0.3f", this->vx, this->vy);
+	//DebugOutTitle(L"%0.3f,%0.3f", this->x, this->y);
+	
 	isOnPlatform = false;
 	
 	//Collistion::getInstance->process(this);
@@ -432,27 +437,8 @@ int PlayableCharacter::getCorrectAnimation()
 	 
 
  }
- void PlayableCharacter::onCollisionWith(CollisionEvent* e)
+ void PlayableCharacter::onCollisionWithEnemy(CollisionEvent* e)
  {
-	 if (!isCollidable()) return;
-	 if (e->ny != 0 && e->des->isBlocking())
-	 {
-		 vy = 0.0f;
-		 isOnPlatform = true;
-		 canNormalJump = true;
-	 }
-	 else
-		 if (e->nx != 0 && e->des->isBlocking())
-		 {
-			 vx = 0.0f;
-			 ay = 0.0f;
-		 }
-	 if (dynamic_cast<QuestionBlock*>(e->des)) {
-		 if (e->ny == -1.0f) {
-			 QuestionBlock* interact_with = dynamic_cast<QuestionBlock*>(e->des);
-			 interact_with->active();
-		 }
-	 }
 	 if (dynamic_cast<Goomba*>(e->des)) {
 		 Goomba* interact_with = dynamic_cast<Goomba*>(e->des);
 		 if (interact_with->isCollidable()) {
@@ -462,8 +448,91 @@ int PlayableCharacter::getCorrectAnimation()
 			 else {
 				 this->dead();
 			 }
+			 canNormalJump = true;
+			 jump();
+			 return;
+		 }
+
+	 }
+	 if (dynamic_cast<RedKooba*>(e->des)) {
+		 RedKooba* interact_with = dynamic_cast<RedKooba*>(e->des);
+		 if (interact_with->isCollidable()) {
+			 if (interact_with->getState() == 0|| interact_with->getState()== 2) {
+				 if (e->ny >= 1.0f) {
+					 interact_with->dead();
+				 }
+				 else {
+					 this->dead();
+				 }
+				 canNormalJump = true;
+				 jump();
+				 return;
+			 }
+			 if (interact_with->getState() == 1) {
+				 float x, y;
+				 e->des->GetPosition(x, y);
+				 float dir = this->x - x;
+				 interact_with->roll(dir);
+			 }
+			 
 		 }
 	 }
+
+ }
+ void PlayableCharacter::onCollisionWith(CollisionEvent* e,bool is_double_collision)
+ {
+	 if (!isCollidable()) return;
+	 if (e->ny >= 1.0f && e->des->isBlockingTop())
+	 {
+		 y += e->t * vy + e->ny * 1.0f;
+		 float block_left, block_top, block_right, block_bottom;
+		 float this_left, this_top, this_right, this_bottom;
+		 e->des->GetBoundingBox(block_left, block_top, block_right, block_bottom);
+		 this->GetBoundingBox(this_left, this_top, this_right, this_bottom);
+		 //DebugOutTitle(L"%0.3f,%0.3f,%0.3f", this->x, this->y, this->vx);
+		 canNormalJump = true;
+		 vy = 0.0f;
+	 }
+	 if (e->ny <= -1.0f && e->des->isBlockingBottom()) {
+		 y += e->t * vy + e->ny * 1.0f;
+		 vy = GRAVITY;
+	 }
+	 if (e->nx <= -1.0f && e->des->isBlockingLeft())
+	 {
+		 
+		 x += e->t * vx + e->nx *1.0f;
+		 vx = 0;
+		 //OnNoCollision();
+		 return;
+	 }
+	 if (e->nx >= 1.0f && e->des->isBlockingRight())
+	 {
+		 x += e->t * vx + e->nx * 1.0f;
+		 vx = 0;
+		 return;
+	 }
+	 if (dynamic_cast<QuestionBlock*>(e->des)) {
+		 if (e->ny <= -1.0f) {
+			 QuestionBlock* interact_with = dynamic_cast<QuestionBlock*>(e->des);
+			 interact_with->active();
+		 }
+	 }
+	 
+	
+	 /*if (dynamic_cast<WoodenFloor*>(e->des)) {
+		 WoodenFloor* interact_with1 = dynamic_cast<WoodenFloor*>(e->des);
+		 if (dynamic_cast<Box*>(interact_with1)) {
+			 Box* interact_with = dynamic_cast<Box*>(interact_with1);
+			 if (e->ny <= -1.0f) {
+				 vy = 0.0f;
+				 isOnPlatform = true;
+				 canNormalJump = true;
+			 }
+		 }
+		 else {
+			 state = state;
+		 }
+	 }*/
 }
  void PlayableCharacter::OnNoCollision()
  {

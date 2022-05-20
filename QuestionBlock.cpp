@@ -1,11 +1,12 @@
 #include "QuestionBlock.h"
 #include "Globaldefine.h"
+#include "LoadedResources.h"
 #include "debug.h"
-QuestionBlock::QuestionBlock(float x, float y) :GameObject(x, y)
+QuestionBlock::QuestionBlock(float x, float y,bool havePowerUp) :GameObject(x, y)
 {
 	isActive = false;
 	isDisable = false;
-	
+	this->havePowerUp = havePowerUp;
 	activeFrame = 0;
 }
 
@@ -15,8 +16,11 @@ void QuestionBlock::Update(DWORD dt)
 		//DebugOutTitle(L"nx: %0.5f,ny: %0.5f");
 		activeFrame += 1;
 		if (activeFrame % 13 == 0) {
+			LoadedResources* lr = LoadedResources::getInstance();
 			isActive = false;
 			isDisable = true;
+			if(havePowerUp)
+				lr->Mario->setPowerUplevel(lr->Mario->powerUpLevel + 1);
 		}
 		else {
 			if (activeFrame > 6)

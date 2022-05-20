@@ -6,9 +6,12 @@ private:
 	int id;
 	// the rectangular in which containing the sprite in the sprites sheets
 	int left, top, right, bottom;
+	
 	DWORD StillFrame;
 public:
 	Texture* texture; // the texture array/sheets
+	float offset_x;
+	float offset_y;
 	D3DX10_SPRITE sprite;
 	D3DXMATRIX matrixScaling;
 	Sprite(int id,

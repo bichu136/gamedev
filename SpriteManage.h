@@ -20,6 +20,8 @@ class SpriteManage
 			     int right,
 			     int bottom,
 			     Texture* texture,
+				 float offset_x =0,
+				 float offset_y = 0,
 			     DWORD StillFrame =1
 		);
 

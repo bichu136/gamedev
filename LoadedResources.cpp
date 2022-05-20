@@ -3,6 +3,7 @@
 #include"TextureManager.h"
 #include"AnimationManage.h"
 #include "GlobalDefine.h"
+#include "RedKooba.h"
 #include "debug.h"
 
 #define BLOCK_PUSH_FACTOR 1.50f
@@ -128,8 +129,11 @@ void LoadedResources::Scan(GameObject* objSrc,
 	for (UINT i = 0; i < objDests->size(); i++)
 	{
 		CollisionEvent* e = LoadedResources::SweptAABB(objSrc, dt, objDests->at(i));
-		if (e->WasCollided() == 1)
+
+		if (e->WasCollided() == 1) {
 			coEvents.push_back(e);
+			//DebugOutTitle(L"%d", i);
+		}
 		else
 			delete e;
 	}
@@ -152,10 +156,6 @@ void LoadedResources::Filter(GameObject* objSrc,
 		//if (c->isDeleted) continue;
 		//if (c->obj->IsDeleted()) continue;
 		//// ignore collision event with object having IsBlocking = 0 (like coin, mushroom, etc)
-		if (filterBlock == 1 && !c->des->isBlocking())
-		{
-			continue;
-		}
 		if (filterX == 1 && c->nx != 0){
 			min_ix = i;
 		}
@@ -559,6 +559,11 @@ void LoadedResources::LoadResources()
 	sm->Add(4101, 5, 14, 21, 30, tm->getTextureWithId(1));
 	sm->Add(4102, 25, 14, 41, 30, tm->getTextureWithId(1));
 	sm->Add(4103, 45, 14, 61, 30, tm->getTextureWithId(1));
+	//red kooba sprite
+	sm->Add(4401, 6, 128, 22, 156, tm->getTextureWithId(1),0.0f,-30.0f);
+	sm->Add(4402, 27, 128, 43, 156, tm->getTextureWithId(1), 0.0f, -30.0f);
+	sm->Add(4403, 49, 128, 65, 156, tm->getTextureWithId(1), 0.0f, -30.0f);
+	sm->Add(4404, 71, 128, 88, 156, tm->getTextureWithId(1), 0.0f, -30.0f);
 	Animation* goomBaWallkAnimation = new Animation(100);
 	goomBaWallkAnimation->Add(4101,3);
 	goomBaWallkAnimation->Add(4102, 3);
@@ -566,6 +571,13 @@ void LoadedResources::LoadResources()
 	goomBaWallkAnimation = new Animation(100);
 	goomBaWallkAnimation->Add(4103, 3);
 	am->Add(4009, goomBaWallkAnimation);
+	Animation* RedKoobaAni = new Animation(100);
+	RedKoobaAni->Add(4401, 3);
+	RedKoobaAni->Add(4402, 3);
+	am->Add(4101, RedKoobaAni);
+	RedKoobaAni = new Animation(100);
+	RedKoobaAni->Add(4403, 3);
+	am->Add(4109, RedKoobaAni);
 	// tile
 	for (int i = 0; i < 42; i++) {
 		for (int j = 0; j < 42; j++) {
@@ -601,7 +613,7 @@ void LoadedResources::LoadResources()
 
 
 	
-	Mario = new PlayableCharacter(20.0f,400.0f);
+	Mario = new PlayableCharacter(15.0f,600.0f);
 	/*Mario->AddAnimation(100);
 	Mario->AddAnimation(101);
 	Mario->AddAnimation(102);
@@ -616,7 +628,7 @@ void LoadedResources::LoadResources()
 	stage_blocks.push_back(new QuestionBlock((BRICK_WIDTH * SCALE_WIDTH / 2.0f) + 12 * BRICK_WIDTH * SCALE_WIDTH, (BRICK_HEIGHT * SCALE_HEIGHT) / 2.0f + 5 * BRICK_HEIGHT * SCALE_HEIGHT));
 	
 	stage_blocks.push_back(new QuestionBlock((BRICK_WIDTH * SCALE_WIDTH / 2.0f) + 14 * BRICK_WIDTH * SCALE_WIDTH, (BRICK_HEIGHT * SCALE_HEIGHT) / 2.0f + 7 * BRICK_HEIGHT * SCALE_HEIGHT));
-	stage_blocks.push_back(new QuestionBlock((BRICK_WIDTH * SCALE_WIDTH / 2.0f) + 15 * BRICK_WIDTH * SCALE_WIDTH, (BRICK_HEIGHT * SCALE_HEIGHT) / 2.0f + 7 * BRICK_HEIGHT * SCALE_HEIGHT));
+	stage_blocks.push_back(new QuestionBlock((BRICK_WIDTH * SCALE_WIDTH / 2.0f) + 15 * BRICK_WIDTH * SCALE_WIDTH, (BRICK_HEIGHT * SCALE_HEIGHT) / 2.0f + 7 * BRICK_HEIGHT * SCALE_HEIGHT,true));
 
 
 	stage_blocks.push_back(new Pipe(
@@ -624,7 +636,45 @@ void LoadedResources::LoadResources()
 		(BRICK_HEIGHT * SCALE_HEIGHT) / 2.0f + 2 * BRICK_HEIGHT * SCALE_HEIGHT,//y
 		1,
 		3));
-	enemies.push_back(new Goomba(100.0f, 400.0f));
+	stage_blocks.push_back(new Box(
+		(BRICK_WIDTH * SCALE_WIDTH / 2.0f) + 17 * BRICK_WIDTH * SCALE_WIDTH,
+		(BRICK_HEIGHT * SCALE_HEIGHT) / 2.0f + 2 * BRICK_HEIGHT * SCALE_HEIGHT,
+		3, 5, 2));
+	stage_blocks.push_back(new Box(
+		(BRICK_WIDTH * SCALE_WIDTH / 2.0f) + 15 * BRICK_WIDTH * SCALE_WIDTH,
+		(BRICK_HEIGHT * SCALE_HEIGHT) / 2.0f + 2 * BRICK_HEIGHT * SCALE_HEIGHT,
+		3,3,1));
+
+	stage_blocks.push_back(new Box(
+		(BRICK_WIDTH * SCALE_WIDTH / 2.0f) + 31 * BRICK_WIDTH * SCALE_WIDTH,
+		(BRICK_HEIGHT * SCALE_HEIGHT) / 2.0f + 2 * BRICK_HEIGHT * SCALE_HEIGHT,
+		5, 7, 4));
+	stage_blocks.push_back(new Box(
+		(BRICK_WIDTH * SCALE_WIDTH / 2.0f) + 28 * BRICK_WIDTH * SCALE_WIDTH,
+		(BRICK_HEIGHT * SCALE_HEIGHT) / 2.0f + 2 * BRICK_HEIGHT * SCALE_HEIGHT,
+		4, 5, 1));
+	stage_blocks.push_back(new Box(
+		(BRICK_WIDTH * SCALE_WIDTH / 2.0f) + 24 * BRICK_WIDTH * SCALE_WIDTH,
+		(BRICK_HEIGHT * SCALE_HEIGHT) / 2.0f + 2 * BRICK_HEIGHT * SCALE_HEIGHT,
+		5, 3, 3));
+	stage_blocks.push_back(new Box(
+		(BRICK_WIDTH * SCALE_WIDTH / 2.0f) + 31 * BRICK_WIDTH * SCALE_WIDTH,
+		(BRICK_HEIGHT * SCALE_HEIGHT) / 2.0f + 2 * BRICK_HEIGHT * SCALE_HEIGHT,
+		7, 2, 3));
+	/*stage_blocks.push_back(new QuestionBlock(
+		(BRICK_WIDTH * SCALE_WIDTH / 2.0f) + 40 * BRICK_WIDTH * SCALE_WIDTH,
+		(BRICK_HEIGHT * SCALE_HEIGHT) / 2.0f + 2 * BRICK_HEIGHT * SCALE_HEIGHT
+		));*/
+	stage_blocks.push_back(new QuestionBlock(
+		(BRICK_WIDTH * SCALE_WIDTH / 2.0f) + 41 * BRICK_WIDTH * SCALE_WIDTH,
+		(BRICK_HEIGHT * SCALE_HEIGHT) / 2.0f + 3 * BRICK_HEIGHT * SCALE_HEIGHT,
+		true
+	));
+	stage_blocks.push_back(new QuestionBlock(
+		(BRICK_WIDTH * SCALE_WIDTH / 2.0f) + 44 * BRICK_WIDTH * SCALE_WIDTH,
+		(BRICK_HEIGHT * SCALE_HEIGHT) / 2.0f + 5 * BRICK_HEIGHT * SCALE_HEIGHT
+	));
+	stage_blocks.push_back(new WoodenFloor((BRICK_WIDTH * SCALE_WIDTH / 2.0f) + 70 * BRICK_WIDTH * SCALE_WIDTH, (BRICK_HEIGHT * SCALE_HEIGHT) / 2.0f, 23, 2));
 	/*for (int i = 0; i < 20; i++){
 		stage_blocks.push_back(new Platform(SCALE_WIDTH*BRICK_WIDTH*(i)+20.0f, SCALE_HEIGHT*BRICK_HEIGHT/2));
 		stage_blocks[i]->AddAnimation(2001);
@@ -633,10 +683,15 @@ void LoadedResources::LoadResources()
 		stage_blocks.push_back(new Platform(200.0f, SCALE_HEIGHT * BRICK_HEIGHT *(i)+20.0f));
 		stage_blocks[i+20]->AddAnimation(2001);
 	}*/
+	enemies.push_back(new Goomba((BRICK_WIDTH* SCALE_WIDTH / 2.0f) + 12 * BRICK_WIDTH * SCALE_WIDTH, (BRICK_HEIGHT* SCALE_HEIGHT) / 2.0f + 2* BRICK_HEIGHT * SCALE_HEIGHT));
+	
+	enemies.push_back(new RedKooba((BRICK_WIDTH* SCALE_WIDTH / 2.0f) + 34 * BRICK_WIDTH * SCALE_WIDTH, (BRICK_HEIGHT* SCALE_HEIGHT) / 2.0f + 4.2f * BRICK_HEIGHT * SCALE_HEIGHT));
+
 }
 
 void LoadedResources::Update(DWORD dt)
 {
+	//
 	playableCollision = false;
 	int e_l = enemies.size();
 	for (auto it = enemies.begin(); it != enemies.end() && enemies.size() > 0; it++) {
@@ -665,11 +720,25 @@ void LoadedResources::Update(DWORD dt)
 
 	checCollisionMarioToStageBlocks(dt);
 	for (int i = 0; i < enemies.size(); i++) {
-		checkCollisionEnemiesToStageBlocks(dt,enemies[i]);
+		if (enemies[i])
+			checkCollisionEnemiesToStageBlocks(dt,enemies[i]);
 	}
 	checCollisionMarioToEnemies(dt);
-
-
+	std::vector<int> deleted_index;
+	for (int i = 0; i < enemies.size(); i++) {
+		if (enemies[i]->is_delete) {
+			deleted_index.push_back(i);
+		}
+	}
+	for (int i = 0; i < deleted_index.size(); i++) {
+		auto it = enemies.begin();
+		int c = 0;
+		while (c < deleted_index[i]) {
+			c += 1;
+			it++;
+		}
+		enemies.erase(it);
+	}
 }
 void LoadedResources::checCollisionMarioToEnemies(DWORD dt) {
 
@@ -709,10 +778,7 @@ void LoadedResources::checCollisionMarioToEnemies(DWORD dt) {
 		{
 			if (colY->t < colX->t)	// was collision on Y first ?
 			{
-				y += colY->t * dy + colY->ny * BLOCK_PUSH_FACTOR;
-				Mario->SetPosition(x, y);
-
-				Mario->onCollisionWith(colY);
+				Mario->onCollisionWithEnemy(colY);
 
 				//
 				// see if after correction on Y, is there still a collision on X ? 
@@ -738,7 +804,7 @@ void LoadedResources::checCollisionMarioToEnemies(DWORD dt) {
 					else {
 						x += colX_other->t * dx + colX_other->nx * BLOCK_PUSH_FACTOR;
 						SweptAABB(Mario, dt, colX_other->des);
-						Mario->onCollisionWith(colX_other);
+						Mario->onCollisionWithEnemy(colX_other);
 					}
 
 				}
@@ -749,11 +815,9 @@ void LoadedResources::checCollisionMarioToEnemies(DWORD dt) {
 			}
 			else // collision on X first
 			{
-				x += colX->t * dx + colX->nx * BLOCK_PUSH_FACTOR;
+				//x += colX->t * dx + colX->nx * BLOCK_PUSH_FACTOR;
 				SweptAABB(Mario, dt, colX->des);
-				Mario->SetPosition(x, y);
-
-				Mario->onCollisionWith(colX);
+				Mario->onCollisionWithEnemy(colX);
 
 				//
 				// see if after correction on X, is there still a collision on Y ? 
@@ -773,8 +837,8 @@ void LoadedResources::checCollisionMarioToEnemies(DWORD dt) {
 
 				if (colY_other != NULL)
 				{
-					y += colY_other->t * dy + colY_other->ny * BLOCK_PUSH_FACTOR;
-					Mario->onCollisionWith(colY_other);
+					//y += colY_other->t * dy + colY_other->ny * BLOCK_PUSH_FACTOR;
+					Mario->onCollisionWithEnemy(colY_other);
 				}
 				else
 				{
@@ -785,16 +849,16 @@ void LoadedResources::checCollisionMarioToEnemies(DWORD dt) {
 		else
 			if (colX != NULL)
 			{
-				x += colX->t * dx + colX->nx * BLOCK_PUSH_FACTOR;
+				//x += colX->t * dx + colX->nx * BLOCK_PUSH_FACTOR;
 				y += dy;
-				Mario->onCollisionWith(colX);
+				Mario->onCollisionWithEnemy(colX);
 			}
 			else
 				if (colY != NULL)
 				{
 					x += dx;
-					y += colY->t * dy + colY->ny * BLOCK_PUSH_FACTOR;
-					Mario->onCollisionWith(colY);
+					//y += colY->t * dy + colY->ny * BLOCK_PUSH_FACTOR;
+					Mario->onCollisionWithEnemy(colY);
 				}
 				else // both colX & colY are NULL 
 				{
@@ -802,7 +866,7 @@ void LoadedResources::checCollisionMarioToEnemies(DWORD dt) {
 					y += dy;
 				}
 
-		Mario->SetPosition(x, y);
+		//Mario->SetPosition(x, y);
 	}
 
 
@@ -860,10 +924,10 @@ void LoadedResources::checCollisionMarioToStageBlocks(DWORD dt) {
 		{
 			if (colY->t < colX->t)	// was collision on Y first ?
 			{
-				y += colY->t * dy + colY->ny * BLOCK_PUSH_FACTOR;
-				Mario->SetPosition(x, y);
+				//y += colY->t * dy + colY->ny * BLOCK_PUSH_FACTOR;
+				//Mario->SetPosition(x, y);
 
-				Mario->onCollisionWith(colY);
+				Mario->onCollisionWith(colY,true);
 
 				//
 				// see if after correction on Y, is there still a collision on X ? 
@@ -887,9 +951,9 @@ void LoadedResources::checCollisionMarioToStageBlocks(DWORD dt) {
 					if (colX_other->t < 0) {
 					}
 					else {
-						x += colX_other->t * dx + colX_other->nx * BLOCK_PUSH_FACTOR;
+						//x += colX_other->t * dx + colX_other->nx * BLOCK_PUSH_FACTOR;
 						SweptAABB(Mario, dt, colX_other->des);
-						Mario->onCollisionWith(colX_other);
+						Mario->onCollisionWith(colX_other,false);
 					}
 
 				}
@@ -900,11 +964,11 @@ void LoadedResources::checCollisionMarioToStageBlocks(DWORD dt) {
 			}
 			else // collision on X first
 			{
-				x += colX->t * dx + colX->nx * BLOCK_PUSH_FACTOR;
+				//x += colX->t * dx + colX->nx * BLOCK_PUSH_FACTOR;
 				SweptAABB(Mario, dt, colX->des);
-				Mario->SetPosition(x, y);
+				//Mario->SetPosition(x, y);
 
-				Mario->onCollisionWith(colX);
+				Mario->onCollisionWith(colX,true);
 
 				//
 				// see if after correction on X, is there still a collision on Y ? 
@@ -924,8 +988,8 @@ void LoadedResources::checCollisionMarioToStageBlocks(DWORD dt) {
 
 				if (colY_other != NULL)
 				{
-					y += colY_other->t * dy + colY_other->ny * BLOCK_PUSH_FACTOR;
-					Mario->onCollisionWith(colY_other);
+					//y += colY_other->t * dy + colY_other->ny * BLOCK_PUSH_FACTOR;
+					Mario->onCollisionWith(colY_other,false);
 				}
 				else
 				{
@@ -936,24 +1000,25 @@ void LoadedResources::checCollisionMarioToStageBlocks(DWORD dt) {
 		else
 			if (colX != NULL)
 			{
-				x += colX->t * dx + colX->nx * BLOCK_PUSH_FACTOR;
-				y += dy;
-				Mario->onCollisionWith(colX);
+				/*x += colX->t * dx + colX->nx * BLOCK_PUSH_FACTOR;
+				y += dy;*/
+				Mario->onCollisionWith(colX,false);
 			}
 			else
 				if (colY != NULL)
 				{
-					x += dx;
-					y += colY->t * dy + colY->ny * BLOCK_PUSH_FACTOR;
-					Mario->onCollisionWith(colY);
+					/*x += dx;
+					y += colY->t * dy + colY->ny * BLOCK_PUSH_FACTOR;*/
+					Mario->onCollisionWith(colY,false);
 				}
 				else // both colX & colY are NULL 
 				{
 					x += dx;
 					y += dy;
+					Mario->SetPosition(x, y);
 				}
 
-		Mario->SetPosition(x, y);
+	
 	}
 
 
@@ -978,23 +1043,25 @@ void LoadedResources::checkCollisionEnemiesToStageBlocks(DWORD dt, GameObject* e
 	//world stuff
 	// -  collsion check between varies gameobjects.
 	// - moving gameobject according to their speed.
-	Goomba* enemies =  dynamic_cast<Goomba*>(enemy);
+	
 	std::vector<CollisionEvent* > collisionEvents;
 	//std::vector<CollisionEvent*> &coEvents
 	CollisionEvent* colX = NULL;
 	CollisionEvent* colY = NULL;
 	collisionEvents.clear();
 	// check for everything 
-	if (enemies->isCollidable()) {
-		Scan(enemies, dt, &stage_blocks, collisionEvents);
+	
+	if (enemy->isCollidable()) {
+		Scan(enemy, dt, &stage_blocks, collisionEvents);
 	}
 	//no colision
+	
 	if (collisionEvents.size() == 0) {
-		enemies->OnNoCollision();
+		enemy->OnNoCollision();
 	}
 	else {
 		//get who have collision first in X axis and Y axis
-
+		GameObject* enemies = enemy;
 		Filter(enemies, collisionEvents, colX, colY);
 
 		float x, y, vx, vy, dx, dy;
@@ -1007,10 +1074,10 @@ void LoadedResources::checkCollisionEnemiesToStageBlocks(DWORD dt, GameObject* e
 		{
 			if (colY->t < colX->t)	// was collision on Y first ?
 			{
-				y += colY->t * dy + colY->ny * BLOCK_PUSH_FACTOR;
-				enemies->SetPosition(x, y);
+				//y += colY->t * dy + colY->ny * BLOCK_PUSH_FACTOR;
+				//enemies->SetPosition(x, y);
 
-				enemies->onCollisionWith(colY);
+				enemies->onCollisionWith(colY,true);
 
 				//
 				// see if after correction on Y, is there still a collision on X ? 
@@ -1034,9 +1101,12 @@ void LoadedResources::checkCollisionEnemiesToStageBlocks(DWORD dt, GameObject* e
 					if (colX_other->t < 0) {
 					}
 					else {
-						x += colX_other->t * dx + colX_other->nx * BLOCK_PUSH_FACTOR;
-						SweptAABB(enemies, dt, colX_other->des);
-						enemies->onCollisionWith(colX_other);
+					//	x += colX_other->t * dx + colX_other->nx * BLOCK_PUSH_FACTOR;
+						if (dynamic_cast<RedKooba*>(enemy)) {
+							dynamic_cast<RedKooba*>(enemy);
+						}
+						enemies->onCollisionWith(colX_other,false);
+						x = x;
 					}
 
 				}
@@ -1047,11 +1117,9 @@ void LoadedResources::checkCollisionEnemiesToStageBlocks(DWORD dt, GameObject* e
 			}
 			else // collision on X first
 			{
-				x += colX->t * dx + colX->nx * BLOCK_PUSH_FACTOR;
-				SweptAABB(enemies, dt, colX->des);
-				enemies->SetPosition(x, y);
-
-				enemies->onCollisionWith(colX);
+				
+				//enemies->SetPosition(x, y);
+				enemies->onCollisionWith(colX,true);
 
 				//
 				// see if after correction on X, is there still a collision on Y ? 
@@ -1071,8 +1139,8 @@ void LoadedResources::checkCollisionEnemiesToStageBlocks(DWORD dt, GameObject* e
 
 				if (colY_other != NULL)
 				{
-					y += colY_other->t * dy + colY_other->ny * BLOCK_PUSH_FACTOR;
-					enemies->onCollisionWith(colY_other);
+				//	y += colY_other->t * dy + colY_other->ny * BLOCK_PUSH_FACTOR;
+					enemies->onCollisionWith(colY_other,false);
 				}
 				else
 				{
@@ -1085,14 +1153,20 @@ void LoadedResources::checkCollisionEnemiesToStageBlocks(DWORD dt, GameObject* e
 			{
 				x += colX->t * dx + colX->nx * BLOCK_PUSH_FACTOR;
 				y += dy;
-				enemies->onCollisionWith(colX);
+				if (dynamic_cast<RedKooba*>(enemy)) {
+					dynamic_cast<RedKooba*>(enemy);
+				}
+				enemies->onCollisionWith(colX,false);
 			}
 			else
 				if (colY != NULL)
 				{
 					x += dx;
 					y += colY->t * dy + colY->ny * BLOCK_PUSH_FACTOR;
-					enemies->onCollisionWith(colY);
+					if (dynamic_cast<RedKooba*>(enemy)) {
+						dynamic_cast<RedKooba*>(enemy);
+					}
+					enemies->onCollisionWith(colY,false);
 				}
 				else // both colX & colY are NULL 
 				{
@@ -1100,7 +1174,7 @@ void LoadedResources::checkCollisionEnemiesToStageBlocks(DWORD dt, GameObject* e
 					y += dy;
 				}
 
-		enemies->SetPosition(x, y);
+		//enemies->SetPosition(x, y);
 	}
 
 

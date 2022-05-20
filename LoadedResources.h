@@ -6,6 +6,7 @@
 #include"Goomba.h"
 #include"QuestionBlock.h"
 #include"SpriteManage.h"
+#include "Box.h"
 #include"TextureManager.h"
 #include"AnimationManage.h"
 #include"CollisionEvent.h"

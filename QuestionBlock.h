@@ -7,8 +7,9 @@ class QuestionBlock :
 		bool isActive;
 		bool isDisable;
 		int activeFrame;
+		bool havePowerUp;
 	public:
-		QuestionBlock(float x, float y);
+		QuestionBlock(float x, float y, bool havePowerUp = false);
 		void active();
 		void Update(DWORD dt);
 		int GetAnimationID(int i);

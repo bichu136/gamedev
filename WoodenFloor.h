@@ -24,7 +24,7 @@ public:
 	int getCorrectAnimation() { return 0; }
 	bool isCollidable() { return false; }
 	void GetSpeed(float& vx, float& vy) { vx = this->vx; vy = this->vy; };
-	void GetBoundingBox(float& left, float& top, float& right, float& bottom);
+	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 	virtual int getCorrectSprite(int w_iter,int h_iter);
 	void getSize(int &width, int &height) { width = this->width, height = this->height; }
 	void getCorrectSpritePosition(int w_iter,int h_iter,float &x,float &y);

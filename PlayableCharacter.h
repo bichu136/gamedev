@@ -11,12 +11,13 @@ private:
 	bool isOnPlatform;
 	bool canNormalJump;
 	float maxVx;
-	int powerUpLevel;
+	
 	//float maxVy;
 	/*std::vector<int> animationIDList;*/
 	//AnimationManage animationManage;
 	void _setState(int state);
 public:
+	int powerUpLevel;
 	void createAttackFire();
 	void createAttackTanuki();
 	void tryToAttack();
@@ -40,7 +41,9 @@ public:
 	void brake(int dir);
 	bool isCollidable() { return state != MARIO_STATE_DIE; }
 	void GetBoundingBox(float& left, float& top, float& right, float& bottom);
-	void onCollisionWith(CollisionEvent* e);
+	void onCollisionWithEnemy(CollisionEvent* e);
+	void onCollisionWith(CollisionEvent* e, bool is_double_collision);
+	//void onCollisionWith(CollisionEvent* e);
 	/*void GetPosition(float& x, float& y);
 	void SetPosition(float x, float y);*/
 	void OnNoCollision();
