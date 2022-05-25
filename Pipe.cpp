@@ -2,6 +2,7 @@
 #include "GlobalDefine.h"
 Pipe::Pipe(float x, float y, int orientation, int size) :WoodenFloor(x, y, 0, 0)
 {
+    this->drawAtFront = true;
     this->size = size;
     this->orientation = orientation;
     if (orientation == 0) {

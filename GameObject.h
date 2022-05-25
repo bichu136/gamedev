@@ -15,13 +15,14 @@ protected:
 	int nx;
 
 	int state;
-
+	
 	bool isDeleted;
 	bool setPositioned;
 
 
 public:
 	bool is_delete;
+	bool drawAtFront;
 	std::vector<int> animationIDList;
 	GameObject(float x, float y) {
 		this->x = x; this->y = y; 
@@ -38,7 +39,7 @@ public:
 			this->y = y; 
 		} 
 	}
-	void GetPosition(float &x, float &y){ x = this->x, y = this->y; }
+	virtual void GetPosition(float &x, float &y){ x = this->x, y = this->y; }
 	float GetX() { return x; }
 	float GetY() { return y; }
 

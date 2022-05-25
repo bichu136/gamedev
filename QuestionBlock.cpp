@@ -1,9 +1,12 @@
 #include "QuestionBlock.h"
 #include "Globaldefine.h"
 #include "LoadedResources.h"
+#include "Mushroom.h"
+#include "Leaf.h"
 #include "debug.h"
 QuestionBlock::QuestionBlock(float x, float y,bool havePowerUp) :GameObject(x, y)
 {
+	this->drawAtFront = true;
 	isActive = false;
 	isDisable = false;
 	this->havePowerUp = havePowerUp;
@@ -16,11 +19,8 @@ void QuestionBlock::Update(DWORD dt)
 		//DebugOutTitle(L"nx: %0.5f,ny: %0.5f");
 		activeFrame += 1;
 		if (activeFrame % 13 == 0) {
-			LoadedResources* lr = LoadedResources::getInstance();
 			isActive = false;
-			isDisable = true;
-			if(havePowerUp)
-				lr->Mario->setPowerUplevel(lr->Mario->powerUpLevel + 1);
+			isDisable = true;				
 		}
 		else {
 			if (activeFrame > 6)
@@ -50,6 +50,20 @@ void QuestionBlock::active() {
 	}
 	else {
 		isActive = true;
+		if (havePowerUp) {
+			LoadedResources* lr = LoadedResources::getInstance();
+			if (lr->Mario->powerUpLevel == BIG) {
+				// spawn tanuki leaf;
+				lr->enemies.push_back(new Leaf(this->x, this->y));
+			}
+			if (lr->Mario->powerUpLevel == SMALL) {
+				//spawn mushroom
+				lr->enemies.push_back(new Mushroom(this->x, this->y));
+			}
+		}
+		else {
+			//spawn coins
+		}
 	}
 }
 void QuestionBlock::AddAnimation(int id)

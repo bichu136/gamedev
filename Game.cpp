@@ -100,20 +100,21 @@ for (DWORD i = 0; i < dwElements; i++)
 this->Update(dt);
 
 
-for (int i = 0; i < lr->stage_blocks.size(); i++) {
-	if (i== lr->stage_blocks.size()-1)
-		drawObject(lr->stage_blocks[i]);
-	else
-		drawObject(lr->stage_blocks[i]);
+for (int i = 0; i < lr->Attack.size(); i++) {
+	drawObject(lr->Attack[i]);
 
+}
+for (int i = 0; i < lr->stage_blocks.size(); i++) {
+	if (!lr->stage_blocks[i]->drawAtFront)
+		drawObject(lr->stage_blocks[i]);
 }
 for (int i = 0; i < lr->enemies.size(); i++) {
 	drawObject(lr->enemies[i]);
 
 }
-for (int i = 0; i < lr->Attack.size(); i++) {
-	drawObject(lr->Attack[i]);
-
+for (int i = 0; i < lr->stage_blocks.size(); i++) {
+	if (lr->stage_blocks[i]->drawAtFront)
+		drawObject(lr->stage_blocks[i]);
 }
 drawObject(lr->Mario);
 spriteObject->End();

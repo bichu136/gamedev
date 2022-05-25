@@ -153,6 +153,7 @@
     <ClInclude Include="CollisionEvent.h" />
     <ClInclude Include="debug.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="FireAttack.h" />
     <ClInclude Include="Frame.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameManager.h" />
@@ -160,7 +161,9 @@
     <ClInclude Include="GlobalDefine.h" />
     <ClInclude Include="Goomba.h" />
     <ClInclude Include="KeyEventHandler.h" />
+    <ClInclude Include="Leaf.h" />
     <ClInclude Include="LoadedResources.h" />
+    <ClInclude Include="Mushroom.h" />
     <ClInclude Include="Pipe.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="PlayableCharacter.h" />
@@ -168,6 +171,7 @@
     <ClInclude Include="RedKooba.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteManage.h" />
+    <ClInclude Include="TanukiAttack.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="WoodenFloor.h" />
@@ -181,16 +185,19 @@
     <ClCompile Include="CollisionEvent.cpp" />
     <ClCompile Include="debug.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="FireAttack.cpp" />
     <ClCompile Include="Frame.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Goomba.cpp" />
     <ClCompile Include="KeyEventHandler.cpp" />
+    <ClCompile Include="Leaf.cpp" />
     <ClCompile Include="LoadedResources.cpp" />
     <ClCompile Include="main.cpp">
       <DeploymentContent>true</DeploymentContent>
     </ClCompile>
+    <ClCompile Include="Mushroom.cpp" />
     <ClCompile Include="Pipe.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="PlayableCharacter.cpp" />
@@ -199,6 +206,7 @@
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteManage.cpp" />
+    <ClCompile Include="TanukiAttack.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="WoodenFloor.cpp" />

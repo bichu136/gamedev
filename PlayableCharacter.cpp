@@ -6,11 +6,13 @@
 #include "Goomba.h"
 #include "RedKooba.h"
 #include "LoadedResources.h"
+#include "Mushroom.h"
 #include "Box.h"
+#include "Leaf.h"
 #define MARIO_MAX_VELOCITY_WALK 6.0f
 #define MARIO_MAX_VELOCITY_RUN 14.0f
-#define MARIO_ACCELARATION_WALK 0.5f
-#define MARIO_ACCELARATION_RUN 0.7f
+#define MARIO_ACCELARATION_WALK 0.2f
+#define MARIO_ACCELARATION_RUN 0.5f
 #define GRAVITY -0.6f
 void PlayableCharacter::tryToAttack()
 {
@@ -26,7 +28,7 @@ void PlayableCharacter::tryToAttack()
 	case 1:
 		break;
 	}
-	DebugOutTitle(L"%d", powerUpLevel);
+	//DebugOutTitle(L"%d", powerUpLevel);
 }
 PlayableCharacter::PlayableCharacter(float x, float y):GameObject(x,y)
 {
@@ -317,9 +319,14 @@ void PlayableCharacter::Update(DWORD dt)
 	//DebugOutTitle(L"%0.3f,%0.3f", this->x, this->y);
 	
 	isOnPlatform = false;
-	
+	DebugOutTitle(L" %0.3f,%0.3f,%d", this->vx, this->vy, this->canNormalJump);
 	//Collistion::getInstance->process(this);
  }
+
+void PlayableCharacter::small_jump()
+{
+	vy = 5.0f;
+}
 
 int PlayableCharacter::GetAnimationID(int i)
 {
@@ -332,13 +339,13 @@ int PlayableCharacter::getCorrectAnimation()
 	if (state == MARIO_STATE_DIE)
 		return 100;
 	switch (powerUpLevel) {
-	case 1:
+	case BIG:
 		return getAnimationBig();
-	case 2:
+	case FIRE:
 		return getAnimationFire();
-	case 3:
+	case TANUKI:
 		return getAnimationTanuki();
-	case 0:
+	case SMALL:
 		return getAnimationSmall();
 	}
 	
@@ -349,6 +356,7 @@ int PlayableCharacter::getCorrectAnimation()
 
 	 if (state == MARIO_STATE_DIE)
 		 return;
+	 is_break = false;
 	 if (dir == LEFT) {
 		 this->_setState(SMALL_MARIO_STATE_WALK_LEFT);
 	 }
@@ -360,6 +368,7 @@ int PlayableCharacter::getCorrectAnimation()
  {
 	 if (state == MARIO_STATE_DIE)
 		 return;
+	 is_break = false;
 	 if (dir == LEFT) {
 		 this->_setState(SMALL_MARIO_STATE_RUN_LEFT);
 	 }
@@ -374,6 +383,12 @@ int PlayableCharacter::getCorrectAnimation()
 	 //change property + change state for rendering
 	 //checkground
 	 if (!canNormalJump) {
+		 if (powerUpLevel == TANUKI) {
+			 //check animation
+			 if (abs(vx) >= MARIO_MAX_VELOCITY_RUN - 1.5f){
+				 small_jump();
+			 }
+		 }
 		 return;
 	 }
 	 if (state == MARIO_STATE_DIE)
@@ -396,7 +411,7 @@ int PlayableCharacter::getCorrectAnimation()
  {
 	 if (state == MARIO_STATE_DIE)
 		 return;
-	 if (vy>3.0f )vy = 3.0f;
+	 if (vy>6.0f )vy = 6.0f;
 	 return;
  }
 
@@ -449,7 +464,7 @@ int PlayableCharacter::getCorrectAnimation()
 				 this->dead();
 			 }
 			 canNormalJump = true;
-			 jump();
+			 small_jump();
 			 return;
 		 }
 
@@ -465,7 +480,7 @@ int PlayableCharacter::getCorrectAnimation()
 					 this->dead();
 				 }
 				 canNormalJump = true;
-				 jump();
+				 small_jump();
 				 return;
 			 }
 			 if (interact_with->getState() == 1) {
@@ -476,6 +491,39 @@ int PlayableCharacter::getCorrectAnimation()
 			 }
 			 
 		 }
+	 }
+	 if (dynamic_cast<Mushroom*>(e->des)) {
+		 Mushroom* interact_with = dynamic_cast<Mushroom*>(e->des);
+		 setPowerUplevel(BIG);
+		 delete e->des;
+		 LoadedResources* lr = LoadedResources::getInstance();
+		 std::vector<GameObject*>::iterator k;
+		 for (auto iter = lr->enemies.begin(); iter != lr->enemies.end(); iter++) {
+			 if ((*iter) == e->des) {
+				 k = iter;
+				 break;
+			 }
+		 }
+		 lr->enemies.erase(k);
+		 //delete e->des;
+		 e->des == nullptr;
+		 return;
+	 }
+	 if (dynamic_cast<Leaf*>(e->des)) {
+		 Leaf* interact_with = dynamic_cast<Leaf*>(e->des);
+		 setPowerUplevel(TANUKI);
+		 delete e->des;
+		 LoadedResources* lr = LoadedResources::getInstance();
+		 std::vector<GameObject*>::iterator k;
+		 for (auto iter = lr->enemies.begin(); iter != lr->enemies.end(); iter++) {
+			 if ((*iter) == e->des) {
+				 k = iter;
+				 break;
+			 }
+		 }
+		 lr->enemies.erase(k);
+		 //delete e->des;
+		 e->des == nullptr;
 	 }
 
  }
@@ -538,10 +586,22 @@ int PlayableCharacter::getCorrectAnimation()
  {
 	 x += vx;
 	 y += vy;
+	 //if  (powerUpLevel==TANUKI)
  }
  void PlayableCharacter::dead()
  {
-	 state = MARIO_STATE_DIE;
+	 if (powerUpLevel == SMALL) {
+		 state = MARIO_STATE_DIE;
+	 }
+	 else {
+		 if (powerUpLevel != BIG) {
+			 powerUpLevel = BIG;
+		 }
+		 else {
+			 powerUpLevel = SMALL;
+		 }
+	 }
+	 
  }
  void PlayableCharacter::_setState(int state) {
 	 if (state == MARIO_STATE_DIE) 
@@ -551,13 +611,20 @@ int PlayableCharacter::getCorrectAnimation()
 	 case SMALL_MARIO_STATE_RUN_RIGHT:
 		 //if (isSitting) break;
 		 maxVx = MARIO_MAX_VELOCITY_RUN;
-		 ax = MARIO_ACCELARATION_RUN;
+		 if (canNormalJump)
+			 ax = MARIO_ACCELARATION_RUN;
+		 else
+			 ax = MARIO_ACCELARATION_RUN/3.0f;
 		 //nx = 1;
 		 break;
 	 case SMALL_MARIO_STATE_RUN_LEFT:
 		 //if (isSitting) break;
 		 maxVx = MARIO_MAX_VELOCITY_RUN;
-		 ax = -MARIO_ACCELARATION_RUN;
+		 
+		 if (canNormalJump)
+			 ax = -MARIO_ACCELARATION_RUN;
+		 else
+			 ax = -MARIO_ACCELARATION_RUN / 3.0f;
 		 //nx = -1;
 		 break;
 	 case SMALL_MARIO_STATE_WALK_RIGHT:
@@ -574,8 +641,16 @@ int PlayableCharacter::getCorrectAnimation()
 		 break;
 	 case SMALL_MARIO_STATE_IDLE_LEFT:
 	 case SMALL_MARIO_STATE_IDLE_RIGHT:
-		 ax = -0.0f;
-		 vx = 0.0f;
+		 if (!is_break) {
+			 ax = -ax * 0.8f;
+			 is_break = true;
+		 }
+			
+		 if (abs(vx) < 0.5f) {
+			 ax = 0;
+			 vx = 0.0f;
+		 }
+			 
 		 break;
 	 case SMALL_MARIO_STATE_AIR_RIGHT:
 	 case SMALL_MARIO_STATE_AIR_LEFT:

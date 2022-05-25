@@ -5,6 +5,7 @@
 #include "GlobalDefine.h"
 #include "RedKooba.h"
 #include "debug.h"
+#include "Mushroom.h"
 
 #define BLOCK_PUSH_FACTOR 1.50f
 LoadedResources* LoadedResources::__instance = NULL;
@@ -578,6 +579,22 @@ void LoadedResources::LoadResources()
 	RedKoobaAni = new Animation(100);
 	RedKoobaAni->Add(4403, 3);
 	am->Add(4109, RedKoobaAni);
+
+
+	//red mushroom
+	sm->Add(2201, 300, 190, 315, 205, tm->getTextureWithId(2));
+	sm->Add(2202, 300, 208, 315, 222, tm->getTextureWithId(2));
+	Animation* MushroomAni = new Animation(100);
+	MushroomAni->Add(2201, 3);
+	//MushroomAni->Add(2102, 3);
+	am->Add(4201, MushroomAni);
+    MushroomAni = new Animation(100);
+	MushroomAni->Add(2202, 3);
+	//MushroomAni->Add(2102, 3);
+	am->Add(4202, MushroomAni);
+
+
+
 	// tile
 	for (int i = 0; i < 42; i++) {
 		for (int j = 0; j < 42; j++) {
@@ -589,6 +606,7 @@ void LoadedResources::LoadResources()
 		}
 	}
 	createMarioAnimation();
+	
 	// create brick animation;
 	Animation* pBrickAnimation = new Animation(100);
 	pBrickAnimation->Add(2101, 3);
@@ -628,7 +646,7 @@ void LoadedResources::LoadResources()
 	stage_blocks.push_back(new QuestionBlock((BRICK_WIDTH * SCALE_WIDTH / 2.0f) + 12 * BRICK_WIDTH * SCALE_WIDTH, (BRICK_HEIGHT * SCALE_HEIGHT) / 2.0f + 5 * BRICK_HEIGHT * SCALE_HEIGHT));
 	
 	stage_blocks.push_back(new QuestionBlock((BRICK_WIDTH * SCALE_WIDTH / 2.0f) + 14 * BRICK_WIDTH * SCALE_WIDTH, (BRICK_HEIGHT * SCALE_HEIGHT) / 2.0f + 7 * BRICK_HEIGHT * SCALE_HEIGHT));
-	stage_blocks.push_back(new QuestionBlock((BRICK_WIDTH * SCALE_WIDTH / 2.0f) + 15 * BRICK_WIDTH * SCALE_WIDTH, (BRICK_HEIGHT * SCALE_HEIGHT) / 2.0f + 7 * BRICK_HEIGHT * SCALE_HEIGHT,true));
+	stage_blocks.push_back(new QuestionBlock((BRICK_WIDTH * SCALE_WIDTH / 2.0f) + 15 * BRICK_WIDTH * SCALE_WIDTH, (BRICK_HEIGHT * SCALE_HEIGHT) / 2.0f + 7 * BRICK_HEIGHT * SCALE_HEIGHT, true));
 
 
 	stage_blocks.push_back(new Pipe(
@@ -685,7 +703,8 @@ void LoadedResources::LoadResources()
 	}*/
 	enemies.push_back(new Goomba((BRICK_WIDTH* SCALE_WIDTH / 2.0f) + 12 * BRICK_WIDTH * SCALE_WIDTH, (BRICK_HEIGHT* SCALE_HEIGHT) / 2.0f + 2* BRICK_HEIGHT * SCALE_HEIGHT));
 	
-	enemies.push_back(new RedKooba((BRICK_WIDTH* SCALE_WIDTH / 2.0f) + 34 * BRICK_WIDTH * SCALE_WIDTH, (BRICK_HEIGHT* SCALE_HEIGHT) / 2.0f + 4.2f * BRICK_HEIGHT * SCALE_HEIGHT));
+	enemies.push_back(new RedKooba((BRICK_WIDTH* SCALE_WIDTH / 2.0f) + 34 * BRICK_WIDTH * SCALE_WIDTH, (BRICK_HEIGHT* SCALE_HEIGHT) / 2.0f + 4.1f * BRICK_HEIGHT * SCALE_HEIGHT));
+	enemies.push_back(new Mushroom((BRICK_WIDTH* SCALE_WIDTH / 2.0f) + 15 * BRICK_WIDTH * SCALE_WIDTH, (BRICK_HEIGHT* SCALE_HEIGHT) / 2.0f + 7 * BRICK_HEIGHT * SCALE_HEIGHT));
 
 }
 

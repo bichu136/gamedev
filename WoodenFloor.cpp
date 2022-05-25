@@ -2,6 +2,7 @@
 #include"GlobalDefine.h"
 WoodenFloor::WoodenFloor(float x, float y, int width, int height):GameObject(x,y)
 {
+	this->drawAtFront = false;
 	sprite_1 = WOODEN_FLOOR_SPRITE_1;
 	sprite_2 = WOODEN_FLOOR_SPRITE_2;
 	sprite_3 = WOODEN_FLOOR_SPRITE_3;

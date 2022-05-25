@@ -12,6 +12,7 @@ private:
 	bool canNormalJump;
 	float maxVx;
 	
+	bool is_break;
 	//float maxVy;
 	/*std::vector<int> animationIDList;*/
 	//AnimationManage animationManage;
@@ -29,6 +30,7 @@ public:
 	void Update(DWORD dt);
 	void setPowerUplevel(int lvl) { if (this->powerUpLevel == 0) {y += SCALE_HEIGHT * (BIG_MARIO_HEIGHT - SMALL_MARIO_HEIGHT) / 2; } this->powerUpLevel = lvl;
 }
+	void small_jump();
 	int GetAnimationID(int i);
 	int getCorrectAnimation();
 	void AddAnimation(int id);

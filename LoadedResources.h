@@ -58,6 +58,7 @@ public:
 	std::vector<GameObject*> stage_blocks;
 	std::vector<GameObject*> enemies;
 	std::vector<GameObject*> Attack;
+	std::vector<GameObject*> Collectable;
 	bool playableCollision;
 	static LoadedResources* getInstance();
 	void checCollisionMarioToStageBlocks(DWORD dt);

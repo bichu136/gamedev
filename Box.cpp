@@ -2,6 +2,7 @@
 #include "GlobalDefine.h"
 Box::Box(float x, float y, int width, int height, int box_color):WoodenFloor(x,y,width,height)
 {
+	this->drawAtFront = false;
 	switch(box_color) {
 		case 1:
 			sprite_1 = BOX_1_SPRITE_1;

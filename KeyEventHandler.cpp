@@ -55,6 +55,7 @@ void KeyEventHandler::OnKeyDown(int KeyCode, PlayableCharacter* player)
 		break;
 	case DIK_A:
 		player->tryToAttack();
+		//player->run();
 		break;
 		//player->run();
 	case DIK_7:
