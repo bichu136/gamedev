@@ -22,7 +22,7 @@ class Mushroom :
 		void GetSpeed(float& vx, float& vy) { vx = this->vx; vy = this->vy; };
 		void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 		void dead();
-		void onCollisionWith(CollisionEvent * e, bool is_double_collision);
+		void onCollisionWith(CollisionEvent * e, bool is_double_collision=true);
 		void onCollisionWith(CollisionEvent * e);
 		void OnNoCollision();
 

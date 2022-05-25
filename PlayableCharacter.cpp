@@ -9,6 +9,7 @@
 #include "Mushroom.h"
 #include "Box.h"
 #include "Leaf.h"
+#include "Plant.h"
 #define MARIO_MAX_VELOCITY_WALK 6.0f
 #define MARIO_MAX_VELOCITY_RUN 14.0f
 #define MARIO_ACCELARATION_WALK 0.2f
@@ -319,7 +320,7 @@ void PlayableCharacter::Update(DWORD dt)
 	//DebugOutTitle(L"%0.3f,%0.3f", this->x, this->y);
 	
 	isOnPlatform = false;
-	DebugOutTitle(L" %0.3f,%0.3f,%d", this->vx, this->vy, this->canNormalJump);
+	//DebugOutTitle(L" %0.3f,%0.3f,%d", this->vx, this->vy, this->canNormalJump);
 	//Collistion::getInstance->process(this);
  }
 
@@ -385,8 +386,11 @@ int PlayableCharacter::getCorrectAnimation()
 	 if (!canNormalJump) {
 		 if (powerUpLevel == TANUKI) {
 			 //check animation
-			 if (abs(vx) >= MARIO_MAX_VELOCITY_RUN - 1.5f){
+			 if (abs(vx) >= MARIO_MAX_VELOCITY_RUN - 0.5f){
 				 small_jump();
+			 }
+			 else {
+				 vy = 0;
 			 }
 		 }
 		 return;
@@ -467,6 +471,11 @@ int PlayableCharacter::getCorrectAnimation()
 			 small_jump();
 			 return;
 		 }
+
+	 }
+	 if (dynamic_cast<Plant*>(e->des)) {
+		 //Plant* interact_with = dynamic_cast<Plant*>(e->des);
+		 this->dead();
 
 	 }
 	 if (dynamic_cast<RedKooba*>(e->des)) {
@@ -614,7 +623,7 @@ int PlayableCharacter::getCorrectAnimation()
 		 if (canNormalJump)
 			 ax = MARIO_ACCELARATION_RUN;
 		 else
-			 ax = MARIO_ACCELARATION_RUN/3.0f;
+			 ax = MARIO_ACCELARATION_RUN*0.8f;
 		 //nx = 1;
 		 break;
 	 case SMALL_MARIO_STATE_RUN_LEFT:
@@ -624,7 +633,7 @@ int PlayableCharacter::getCorrectAnimation()
 		 if (canNormalJump)
 			 ax = -MARIO_ACCELARATION_RUN;
 		 else
-			 ax = -MARIO_ACCELARATION_RUN / 3.0f;
+			 ax = -MARIO_ACCELARATION_RUN *0.8f;
 		 //nx = -1;
 		 break;
 	 case SMALL_MARIO_STATE_WALK_RIGHT:

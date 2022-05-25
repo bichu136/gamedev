@@ -51,8 +51,8 @@ public:
 	virtual int GetAnimationID(int i) = 0;
 	virtual void AddAnimation(int id) = 0;
 	virtual int getCorrectAnimation() = 0;
-	virtual void onCollisionWith(CollisionEvent* e,bool is_double_collision = true){return; }
-	virtual void OnNoCollision() {return; }
+	virtual void onCollisionWith(CollisionEvent* e, bool is_double_collision = true) { return; };
+	virtual void OnNoCollision() { x += vx; y += vy; }
 	virtual bool isCollidable() { return false; }
 	virtual void GetSpeed(float& vx, float& vy) { vx = this->vx; vy = this->vy; };
 	virtual void GetBoundingBox(float& left, float& top, float& right, float& bottom) = 0;

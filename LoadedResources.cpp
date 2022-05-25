@@ -6,6 +6,7 @@
 #include "RedKooba.h"
 #include "debug.h"
 #include "Mushroom.h"
+#include "Plant.h"
 
 #define BLOCK_PUSH_FACTOR 1.50f
 LoadedResources* LoadedResources::__instance = NULL;
@@ -583,18 +584,46 @@ void LoadedResources::LoadResources()
 
 	//red mushroom
 	sm->Add(2201, 300, 190, 315, 205, tm->getTextureWithId(2));
+	//leaf
 	sm->Add(2202, 300, 208, 315, 222, tm->getTextureWithId(2));
 	Animation* MushroomAni = new Animation(100);
 	MushroomAni->Add(2201, 3);
 	//MushroomAni->Add(2102, 3);
 	am->Add(4201, MushroomAni);
+	//leaf animation;
     MushroomAni = new Animation(100);
 	MushroomAni->Add(2202, 3);
 	//MushroomAni->Add(2102, 3);
 	am->Add(4202, MushroomAni);
+	
+	//red plant
+	Animation* PlantsAni = new Animation(100);
+	sm->Add(4501, 151,64 ,166, 85, tm->getTextureWithId(1));
+	sm->Add(4502, 197, 64, 212, 85, tm->getTextureWithId(1));
+	PlantsAni->Add(4501, 3);
+	PlantsAni->Add(4502, 3);
+	am->Add(4301,PlantsAni);
 
 
+	//green plant
+	PlantsAni = new Animation(100);
+	sm->Add(4503, 241, 64, 256, 85, tm->getTextureWithId(1));
+	PlantsAni->Add(4503, 3);
+	am->Add(4302, PlantsAni);
 
+	//green fire plant
+	PlantsAni = new Animation(100);
+	sm->Add(4504, 106, 64, 121, 85, tm->getTextureWithId(1));
+	PlantsAni->Add(4504, 3);
+	am->Add(4303, PlantsAni);
+
+	//red fire plant
+	PlantsAni = new Animation(100);
+	sm->Add(4505, 60, 64, 75, 85, tm->getTextureWithId(1));
+	sm->Add(4506, 106, 64, 13, 85, tm->getTextureWithId(1));
+	PlantsAni->Add(4505, 3);
+	PlantsAni->Add(4506, 3);
+	am->Add(4304, PlantsAni);
 	// tile
 	for (int i = 0; i < 42; i++) {
 		for (int j = 0; j < 42; j++) {
@@ -704,7 +733,8 @@ void LoadedResources::LoadResources()
 	enemies.push_back(new Goomba((BRICK_WIDTH* SCALE_WIDTH / 2.0f) + 12 * BRICK_WIDTH * SCALE_WIDTH, (BRICK_HEIGHT* SCALE_HEIGHT) / 2.0f + 2* BRICK_HEIGHT * SCALE_HEIGHT));
 	
 	enemies.push_back(new RedKooba((BRICK_WIDTH* SCALE_WIDTH / 2.0f) + 34 * BRICK_WIDTH * SCALE_WIDTH, (BRICK_HEIGHT* SCALE_HEIGHT) / 2.0f + 4.1f * BRICK_HEIGHT * SCALE_HEIGHT));
-	enemies.push_back(new Mushroom((BRICK_WIDTH* SCALE_WIDTH / 2.0f) + 15 * BRICK_WIDTH * SCALE_WIDTH, (BRICK_HEIGHT* SCALE_HEIGHT) / 2.0f + 7 * BRICK_HEIGHT * SCALE_HEIGHT));
+	//enemies.push_back(new Mushroom((BRICK_WIDTH* SCALE_WIDTH / 2.0f) + 15 * BRICK_WIDTH * SCALE_WIDTH, (BRICK_HEIGHT* SCALE_HEIGHT) / 2.0f + 9 * BRICK_HEIGHT * SCALE_HEIGHT));
+	enemies.push_back(new Plant((BRICK_WIDTH* SCALE_WIDTH / 2.0f) + 21.5f * BRICK_WIDTH * SCALE_WIDTH, (BRICK_HEIGHT* SCALE_HEIGHT) / 2.0f + 5 * BRICK_HEIGHT * SCALE_HEIGHT));
 
 }
 
