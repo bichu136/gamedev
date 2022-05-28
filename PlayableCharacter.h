@@ -17,6 +17,11 @@ private:
 	/*std::vector<int> animationIDList;*/
 	//AnimationManage animationManage;
 	void _setState(int state);
+protected:
+	void CollisionBelow(CollisionEvent* e);
+	void CollisionLeft(CollisionEvent* e);
+	void CollisionRight(CollisionEvent* e);
+	void CollisionTop(CollisionEvent* e);
 public:
 	int powerUpLevel;
 	void createAttackFire();
@@ -44,7 +49,7 @@ public:
 	bool isCollidable() { return state != MARIO_STATE_DIE; }
 	void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 	void onCollisionWithEnemy(CollisionEvent* e);
-	void onCollisionWith(CollisionEvent* e, bool is_double_collision);
+	//void onCollisionWith(CollisionEvent* e, bool is_double_collision);
 	//void onCollisionWith(CollisionEvent* e);
 	/*void GetPosition(float& x, float& y);
 	void SetPosition(float x, float y);*/

@@ -536,44 +536,40 @@ int PlayableCharacter::getCorrectAnimation()
 	 }
 
  }
- void PlayableCharacter::onCollisionWith(CollisionEvent* e,bool is_double_collision)
- {
-	 if (!isCollidable()) return;
-	 if (e->ny >= 1.0f && e->des->isBlockingTop())
-	 {
-		 y += e->t * vy + e->ny * 1.0f;
-		 float block_left, block_top, block_right, block_bottom;
-		 float this_left, this_top, this_right, this_bottom;
-		 e->des->GetBoundingBox(block_left, block_top, block_right, block_bottom);
-		 this->GetBoundingBox(this_left, this_top, this_right, this_bottom);
-		 //DebugOutTitle(L"%0.3f,%0.3f,%0.3f", this->x, this->y, this->vx);
-		 canNormalJump = true;
-		 vy = 0.0f;
-	 }
-	 if (e->ny <= -1.0f && e->des->isBlockingBottom()) {
-		 y += e->t * vy + e->ny * 1.0f;
-		 vy = GRAVITY;
-	 }
-	 if (e->nx <= -1.0f && e->des->isBlockingLeft())
-	 {
-		 
-		 x += e->t * vx + e->nx *1.0f;
-		 vx = 0;
-		 //OnNoCollision();
-		 return;
-	 }
-	 if (e->nx >= 1.0f && e->des->isBlockingRight())
-	 {
-		 x += e->t * vx + e->nx * 1.0f;
-		 vx = 0;
-		 return;
-	 }
-	 if (dynamic_cast<QuestionBlock*>(e->des)) {
-		 if (e->ny <= -1.0f) {
-			 QuestionBlock* interact_with = dynamic_cast<QuestionBlock*>(e->des);
-			 interact_with->active();
-		 }
-	 }
+ //void PlayableCharacter::onCollisionWith(CollisionEvent* e,bool is_double_collision)
+ //{
+	// if (!isCollidable()) return;
+	// if (e->ny >= 1.0f && e->des->isBlockingTop())
+	// {
+	//	 y += e->t * vy + e->ny * 1.0f;
+	//	 float block_left, block_top, block_right, block_bottom;
+	//	 float this_left, this_top, this_right, this_bottom;
+	//	 e->des->GetBoundingBox(block_left, block_top, block_right, block_bottom);
+	//	 this->GetBoundingBox(this_left, this_top, this_right, this_bottom);
+	//	 //DebugOutTitle(L"%0.3f,%0.3f,%0.3f", this->x, this->y, this->vx);
+	//	 
+	//	 canNormalJump = true;
+	//	 vy = 0.0f;
+	// }
+	// if (e->ny <= -1.0f && e->des->isBlockingBottom()) {
+	//	 y += e->t * vy + e->ny * 1.0f;
+	//	 vy = GRAVITY;
+	// }
+	// if (e->nx <= -1.0f && e->des->isBlockingLeft())
+	// {
+	//	 
+	//	 x += e->t * vx + e->nx *1.0f;
+	//	 vx = 0;
+	//	 //OnNoCollision();
+	//	 return;
+	// }
+	// if (e->nx >= 1.0f && e->des->isBlockingRight())
+	// {
+	//	 x += e->t * vx + e->nx * 1.0f;
+	//	 vx = 0;
+	//	 return;
+	// }
+	// 
 	 
 	
 	 /*if (dynamic_cast<WoodenFloor*>(e->des)) {
@@ -590,7 +586,8 @@ int PlayableCharacter::getCorrectAnimation()
 			 state = state;
 		 }
 	 }*/
-}
+//}
+
  void PlayableCharacter::OnNoCollision()
  {
 	 x += vx;
@@ -690,6 +687,31 @@ int PlayableCharacter::getCorrectAnimation()
 		 vx = 0;
 		 ax = 0;
 		 break;*/
+ }
+
+ void PlayableCharacter::CollisionBelow(CollisionEvent* e)
+ {
+	 canNormalJump = true;
+ }
+
+ void PlayableCharacter::CollisionLeft(CollisionEvent* e)
+ {
+	 vx = 0;
+ }
+
+ void PlayableCharacter::CollisionRight(CollisionEvent* e)
+ {
+	 vx = 0;
+ }
+
+ void PlayableCharacter::CollisionTop(CollisionEvent* e)
+ {
+	 if (dynamic_cast<QuestionBlock*>(e->des)) {
+		 if (e->ny <= -1.0f) {
+		 	 QuestionBlock* interact_with = dynamic_cast<QuestionBlock*>(e->des);
+		 		 interact_with->active();
+		 }
+     }
  }
 
  void PlayableCharacter::createAttackFire()

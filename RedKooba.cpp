@@ -93,9 +93,10 @@ void RedKooba::onCollisionWith(CollisionEvent* e,bool is_double_collision)
 	//			
 	//	return;
 	//}
-	if (e->ny == 0 &&e->nx ==0){
-		this->x = this->x;
-	}
+	//if (e->ny == 0 &&e->nx ==0){
+	//	this->x = this->x;
+	//}
+	if (!isCollidable()) return;
 	if (e->ny == 1.0f && e->des->isBlockingTop())
 	{
 		y += e->t * vy + e->ny * 1.0f;

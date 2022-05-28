@@ -72,60 +72,60 @@ void Goomba::dead()
 {
 	is_dead = true;
 }
-void Goomba::onCollisionWith(CollisionEvent* e,bool is_double_collision)
-{
-	if (e->ny >= 1.0f && e->des->isBlockingTop())
-	{
-		y += e->t * vy + e->ny * 1.0f;
-		float block_left, block_top, block_right, block_bottom;
-		float this_left, this_top, this_right, this_bottom;
-		e->des->GetBoundingBox(block_left, block_top, block_right, block_bottom);
-		this->GetBoundingBox(this_left, this_top, this_right, this_bottom);
-		//DebugOutTitle(L"%0.3f,%0.3f,%0.3f", this->x, this->y, this->vx);
-		/*if (block_left >= this_left || block_right <= this_right) {
-			vx = -vx;
-			x += vx * 1.5f;
-		}*/
-		vy = 0.0f;
-		//return;
-	}
-	if (e->ny <= -1.0f && e->des->isBlockingBottom()) {
-		y += e->t * vy + e->ny * 1.0f;
-		//return;
-	}
-	if (e->nx == -1.0f && e->des->isBlockingLeft())
-	{
-		if (dynamic_cast<Pipe*>(e->des))
-			dynamic_cast<Pipe*>(e->des);
-			//DebugOutTitle(L"pipe collided %0.3f,%0.3f,%0.3f", this->x, this->y, this->vx);
-		//return;
-		if (is_collide) {
-			is_collide = false;
-		}
-		else {
-			vx = -vx;
-			x += e->t * vx + e->nx * 1.0f;
-			is_collide = false;
-		}
-		return;
-	}
-	if (e->nx == 1.0f && e->des->isBlockingRight())
-	{
-		if (is_collide) {
-			is_collide = false;
-		}
-		else {
-			vx = -vx;
-			x += e->t * vx + e->nx * 1.0f;
-			is_collide = false;
-			
-		}
-		
-		//return;
-	}
-	if (is_double_collision) { return; }
-	OnNoCollision();
-}
+//void Goomba::onCollisionWith(CollisionEvent* e,bool is_double_collision)
+//{
+//	if (e->ny >= 1.0f && e->des->isBlockingTop())
+//	{
+//		y += e->t * vy + e->ny * 1.0f;
+//		float block_left, block_top, block_right, block_bottom;
+//		float this_left, this_top, this_right, this_bottom;
+//		e->des->GetBoundingBox(block_left, block_top, block_right, block_bottom);
+//		this->GetBoundingBox(this_left, this_top, this_right, this_bottom);
+//		//DebugOutTitle(L"%0.3f,%0.3f,%0.3f", this->x, this->y, this->vx);
+//		/*if (block_left >= this_left || block_right <= this_right) {
+//			vx = -vx;
+//			x += vx * 1.5f;
+//		}*/
+//		vy = 0.0f;
+//		//return;
+//	}
+//	if (e->ny <= -1.0f && e->des->isBlockingBottom()) {
+//		y += e->t * vy + e->ny * 1.0f;
+//		//return;
+//	}
+//	if (e->nx == -1.0f && e->des->isBlockingLeft())
+//	{
+//		if (dynamic_cast<Pipe*>(e->des))
+//			dynamic_cast<Pipe*>(e->des);
+//			//DebugOutTitle(L"pipe collided %0.3f,%0.3f,%0.3f", this->x, this->y, this->vx);
+//		//return;
+//		if (is_collide) {
+//			is_collide = false;
+//		}
+//		else {
+//			vx = -vx;
+//			x += e->t * vx + e->nx * 1.0f;
+//			is_collide = false;
+//		}
+//		return;
+//	}
+//	if (e->nx == 1.0f && e->des->isBlockingRight())
+//	{
+//		if (is_collide) {
+//			is_collide = false;
+//		}
+//		else {
+//			vx = -vx;
+//			x += e->t * vx + e->nx * 1.0f;
+//			is_collide = false;
+//			
+//		}
+//		
+//		//return;
+//	}
+//	if (is_double_collision) { return; }
+//	OnNoCollision();
+//}
 void Goomba::OnNoCollision()
 {
 	x += vx;

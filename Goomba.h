@@ -10,8 +10,8 @@ private:
 	bool is_collide;
 	int dead_frame;
 	bool isOnPlatform;
-	float vx;
-	float vy;
+	//float vx;
+	//float vy;
 public:
 	Goomba(float x, float y);
 	void Update(DWORD dt);
@@ -23,7 +23,7 @@ public:
 	void GetSpeed(float& vx, float& vy) { vx = this->vx; vy = this->vy; };
 	void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 	void dead();
-	void onCollisionWith(CollisionEvent* e, bool is_double_collision);
+	//void onCollisionWith(CollisionEvent* e, bool is_double_collision);
 	void onCollisionWith(CollisionEvent* e);
 	void OnNoCollision();
 	

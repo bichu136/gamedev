@@ -19,15 +19,16 @@ protected:
 	bool isDeleted;
 	bool setPositioned;
 
-
+	virtual void CollisionBelow(CollisionEvent* e) { return;  }
+	virtual void CollisionLeft(CollisionEvent* e) { vx = -vx; }
+	virtual void CollisionRight(CollisionEvent* e) { vx = -vx; }
+	virtual void CollisionTop(CollisionEvent* e) { return; }
 public:
 	bool is_delete;
 	bool drawAtFront;
 	std::vector<int> animationIDList;
 	GameObject(float x, float y) {
 		this->x = x; this->y = y; 
-		vx = 0;
-		vy = 0;
 		nx = 0;
 		state = 0;
 		isDeleted = false;
@@ -51,7 +52,7 @@ public:
 	virtual int GetAnimationID(int i) = 0;
 	virtual void AddAnimation(int id) = 0;
 	virtual int getCorrectAnimation() = 0;
-	virtual void onCollisionWith(CollisionEvent* e, bool is_double_collision = true) { return; };
+	virtual void onCollisionWith(CollisionEvent* e, bool is_double_collision = true);
 	virtual void OnNoCollision() { x += vx; y += vy; }
 	virtual bool isCollidable() { return false; }
 	virtual void GetSpeed(float& vx, float& vy) { vx = this->vx; vy = this->vy; };
